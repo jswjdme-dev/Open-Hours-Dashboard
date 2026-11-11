@@ -295,14 +295,14 @@ export const MyWorkPage: React.FC<MyWorkPageProps> = ({
       <div className="flex items-center justify-between flex-wrap gap-4">
         <div>
           <div className="flex items-center gap-3 mb-1">
-            <h1 className="text-[26px] font-bold text-[#101828] leading-tight tracking-tight">
+            <h1 className="text-3xl font-medium text-[#111827] leading-tight tracking-tight">
               My Work
             </h1>
-            <span className="px-2.5 py-0.5 text-[12px] font-semibold bg-[#F8F9FB] text-[#D92D50] rounded-full border border-[#ECEEF2]">
+            <span className="px-2.5 py-0.5 text-[12px] font-semibold bg-blue-50 text-[var(--accent)] rounded-[6px] border border-blue-100 font-medium">
               Personal Dashboard
             </span>
           </div>
-          <p className="text-[14px] font-medium text-[#475467]">
+          <p className="text-sm text-[#6B7280]">
             All delivery tasks and pod requests assigned to you, sorted by priority and deadline.
           </p>
         </div>
@@ -310,7 +310,7 @@ export const MyWorkPage: React.FC<MyWorkPageProps> = ({
         {/* Member Selector (for Admin / Account Manager or personal switch) */}
         <div className="flex items-center gap-2 bg-white px-3.5 h-[36px] rounded-[10px] border border-[#D0D5DD] shadow-2xs">
           <User size={14} className="text-[#667085]" />
-          <span className="text-[14px] font-medium text-[#475467]">Member:</span>
+          <span className="text-sm text-[#6B7280]">Member:</span>
           <select
             value={selectedMemberId}
             onChange={(e) => handleMemberChange(e.target.value)}
@@ -327,7 +327,7 @@ export const MyWorkPage: React.FC<MyWorkPageProps> = ({
 
       {/* KPI Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
-        <div className="bg-white rounded-[16px] p-5 border border-[#ECEEF2] shadow-[0_1px_2px_rgba(16,24,40,0.03)]">
+        <div className="bg-white rounded-[12px] p-5 border border-[#E5E7EB] shadow-[0_1px_2px_rgba(16,24,40,0.03)]">
           <span className="text-[13px] font-medium text-[#667085] block mb-1">
             Open Delivery Tasks
           </span>
@@ -343,7 +343,7 @@ export const MyWorkPage: React.FC<MyWorkPageProps> = ({
           </div>
         </div>
 
-        <div className="bg-white rounded-[16px] p-5 border border-[#ECEEF2] shadow-[0_1px_2px_rgba(16,24,40,0.03)]">
+        <div className="bg-white rounded-[12px] p-5 border border-[#E5E7EB] shadow-[0_1px_2px_rgba(16,24,40,0.03)]">
           <span className="text-[13px] font-medium text-[#667085] block mb-1">
             Urgent Tasks
           </span>
@@ -363,7 +363,7 @@ export const MyWorkPage: React.FC<MyWorkPageProps> = ({
           </div>
         </div>
 
-        <div className="bg-white rounded-[16px] p-5 border border-[#ECEEF2] shadow-[0_1px_2px_rgba(16,24,40,0.03)]">
+        <div className="bg-white rounded-[12px] p-5 border border-[#E5E7EB] shadow-[0_1px_2px_rgba(16,24,40,0.03)]">
           <span className="text-[13px] font-medium text-[#667085] block mb-1">
             Open Pod Requests
           </span>
@@ -383,7 +383,7 @@ export const MyWorkPage: React.FC<MyWorkPageProps> = ({
           </div>
         </div>
 
-        <div className="bg-white rounded-[16px] p-5 border border-[#ECEEF2] shadow-[0_1px_2px_rgba(16,24,40,0.03)]">
+        <div className="bg-white rounded-[12px] p-5 border border-[#E5E7EB] shadow-[0_1px_2px_rgba(16,24,40,0.03)]">
           <span className="text-[13px] font-medium text-[#667085] block mb-1">
             Completed Tasks
           </span>
@@ -394,14 +394,14 @@ export const MyWorkPage: React.FC<MyWorkPageProps> = ({
       </div>
 
       {/* Primary Section Switcher */}
-      <div className="border-b border-[#ECEEF2] flex items-center gap-2">
+      <div className="border-b border-[#E5E7EB] flex items-center gap-2">
         <button
           type="button"
           onClick={() => setActiveSection('delivery')}
           className={`py-3 px-4 text-[14px] font-bold border-b-2 transition-all cursor-pointer flex items-center gap-2 ${
             activeSection === 'delivery'
-              ? 'border-[#D92D50] text-[#D92D50]'
-              : 'border-transparent text-[#667085] hover:text-[#101828]'
+              ? 'border-[var(--accent)] text-[var(--accent)] font-semibold'
+              : 'border-transparent text-[#6B7280] hover:text-[#111827]'
           }`}
         >
           <CheckSquare size={16} />
@@ -413,8 +413,8 @@ export const MyWorkPage: React.FC<MyWorkPageProps> = ({
           onClick={() => setActiveSection('requests')}
           className={`py-3 px-4 text-[14px] font-bold border-b-2 transition-all cursor-pointer flex items-center gap-2 ${
             activeSection === 'requests'
-              ? 'border-[#D92D50] text-[#D92D50]'
-              : 'border-transparent text-[#667085] hover:text-[#101828]'
+              ? 'border-[var(--accent)] text-[var(--accent)] font-semibold'
+              : 'border-transparent text-[#6B7280] hover:text-[#111827]'
           }`}
         >
           <Send size={16} />
@@ -429,7 +429,7 @@ export const MyWorkPage: React.FC<MyWorkPageProps> = ({
       {activeSection === 'delivery' && (
         <div className="space-y-4">
           {/* Filter Tabs */}
-          <div className="bg-white rounded-[16px] p-4 border border-[#ECEEF2] shadow-[0_1px_2px_rgba(16,24,40,0.03)] flex items-center justify-between flex-wrap gap-4">
+          <div className="bg-white rounded-[12px] p-4 border border-[#E5E7EB] shadow-[0_1px_2px_rgba(16,24,40,0.03)] flex items-center justify-between flex-wrap gap-4">
             <div className="flex items-center gap-2">
               {(['pending', 'completed', 'all'] as const).map((st) => (
                 <button
@@ -471,11 +471,11 @@ export const MyWorkPage: React.FC<MyWorkPageProps> = ({
           {/* Task List */}
           <div className="space-y-3">
             {loading ? (
-              <div className="bg-white rounded-[16px] p-12 text-center text-[13px] text-[#667085] border border-[#E8EAEE]">
+              <div className="bg-white rounded-[12px] p-12 text-center text-[13px] text-[#667085] border border-[#E5E7EB]">
                 Loading assigned tasks...
               </div>
             ) : filteredTasks.length === 0 ? (
-              <div className="bg-white rounded-[16px] p-12 text-center text-[13px] text-[#667085] border border-[#E8EAEE] space-y-2">
+              <div className="bg-white rounded-[12px] p-12 text-center text-[13px] text-[#667085] border border-[#E5E7EB] space-y-2">
                 <CheckCircle2 size={28} className="text-[#12B76A] mx-auto" />
                 <div className="font-semibold text-[#101828] text-[15px]">
                   {statusFilter === 'pending'
@@ -496,12 +496,12 @@ export const MyWorkPage: React.FC<MyWorkPageProps> = ({
                 return (
                   <div
                     key={task.id}
-                    className={`bg-white rounded-[16px] p-5 border transition-all shadow-[0_1px_2px_rgba(16,24,40,0.04)] flex items-start justify-between gap-4 ${
+                    className={`bg-white rounded-[12px] p-5 border transition-all shadow-[0_1px_2px_rgba(16,24,40,0.04)] flex items-start justify-between gap-4 ${
                       task.done
-                        ? 'border-[#E8EAEE] bg-[#F8F9FA] opacity-75'
+                        ? 'border-[#E5E7EB] bg-[#F8F9FA] opacity-75'
                         : isOverdue
-                        ? 'border-[#D92D50]/40 hover:border-[#D92D50]'
-                        : 'border-[#E8EAEE] hover:border-[#D0D5DD]'
+                        ? 'border-[#D92D50]/40 hover:border-[var(--accent)]'
+                        : 'border-[#E5E7EB] hover:border-[#D0D5DD]'
                     }`}
                   >
                     {/* Checkbox and Content */}
@@ -510,7 +510,7 @@ export const MyWorkPage: React.FC<MyWorkPageProps> = ({
                         type="checkbox"
                         checked={task.done}
                         onChange={() => handleToggleTaskDone(task)}
-                        className="mt-0.5 w-4 h-4 rounded accent-[#D92D50] cursor-pointer shrink-0"
+                        className="mt-0.5 w-4 h-4 rounded accent-[var(--accent)] cursor-pointer shrink-0"
                       />
 
                       <div className="space-y-1 min-w-0 flex-1">
@@ -586,7 +586,7 @@ export const MyWorkPage: React.FC<MyWorkPageProps> = ({
       {activeSection === 'requests' && (
         <div className="space-y-4">
           {/* Requests Filter Tab */}
-          <div className="bg-white rounded-[16px] p-4 border border-[#ECEEF2] shadow-[0_1px_2px_rgba(16,24,40,0.03)] flex items-center justify-between flex-wrap gap-4">
+          <div className="bg-white rounded-[12px] p-4 border border-[#E5E7EB] shadow-[0_1px_2px_rgba(16,24,40,0.03)] flex items-center justify-between flex-wrap gap-4">
             <div className="flex items-center gap-2">
               <span className="text-[13px] text-[#667085] font-medium">Status:</span>
               <select
@@ -606,7 +606,7 @@ export const MyWorkPage: React.FC<MyWorkPageProps> = ({
           {/* Requests List */}
           <div className="space-y-3">
             {filteredRequests.length === 0 ? (
-              <div className="bg-white rounded-[16px] p-12 text-center text-[13px] text-[#667085] border border-[#E8EAEE] space-y-2">
+              <div className="bg-white rounded-[12px] p-12 text-center text-[13px] text-[#667085] border border-[#E5E7EB] space-y-2">
                 <CheckCircle2 size={28} className="text-[#12B76A] mx-auto" />
                 <div className="font-semibold text-[#101828] text-[15px]">
                   No pod requests found
@@ -623,10 +623,10 @@ export const MyWorkPage: React.FC<MyWorkPageProps> = ({
                 return (
                   <div
                     key={req.id}
-                    className={`bg-white rounded-[16px] p-5 border transition-all shadow-[0_1px_2px_rgba(16,24,40,0.04)] space-y-3 ${
+                    className={`bg-white rounded-[12px] p-5 border transition-all shadow-[0_1px_2px_rgba(16,24,40,0.04)] space-y-3 ${
                       isOverdue
                         ? 'border-[#D92D50]/40'
-                        : 'border-[#ECEEF2]'
+                        : 'border-[#E5E7EB]'
                     }`}
                   >
                     <div className="flex items-start justify-between gap-4">
@@ -769,7 +769,7 @@ export const MyWorkPage: React.FC<MyWorkPageProps> = ({
                 <label className="block text-[12px] font-semibold text-[#344054]">
                   Attach Files (Optional · Max 5 MB each)
                 </label>
-                <div className="border-2 border-dashed border-[#D0D5DD] hover:border-[#D92D50] rounded-[12px] p-4 text-center transition-colors">
+                <div className="border-2 border-dashed border-[#D0D5DD] hover:border-[var(--accent)] rounded-[12px] p-4 text-center transition-colors">
                   <input
                     type="file"
                     id="response-file-input"
@@ -783,7 +783,7 @@ export const MyWorkPage: React.FC<MyWorkPageProps> = ({
                     className="cursor-pointer flex flex-col items-center justify-center gap-1.5"
                   >
                     <Upload size={20} className="text-[#667085]" />
-                    <span className="text-[12.5px] font-semibold text-[#D92D50]">
+                    <span className="text-[12.5px] font-semibold text-[var(--accent)]">
                       Click to upload deliverables
                     </span>
                     <span className="text-[11px] text-[#667085]">
@@ -835,7 +835,7 @@ export const MyWorkPage: React.FC<MyWorkPageProps> = ({
                 <button
                   type="submit"
                   disabled={isSubmittingResponse}
-                  className="px-5 py-2 rounded-[10px] bg-[#D92D50] hover:bg-[#B82340] text-white font-semibold cursor-pointer shadow-2xs"
+                  className="px-5 py-2 rounded-[10px] bg-[var(--accent)] hover:opacity-90 text-white font-medium cursor-pointer shadow-xs"
                 >
                   {isSubmittingResponse ? 'Submitting...' : 'Submit to Manager'}
                 </button>

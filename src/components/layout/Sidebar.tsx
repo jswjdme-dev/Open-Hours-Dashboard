@@ -256,82 +256,61 @@ export const Sidebar: React.FC<SidebarProps> = ({
       {/* Mobile Backdrop Overlay */}
       {isMobileOpen && (
         <div
-          className="fixed inset-0 bg-[#101828]/40 backdrop-blur-xs z-40 lg:hidden"
+          className="fixed inset-0 bg-[#0F2A47]/60 backdrop-blur-xs z-40 lg:hidden"
           onClick={onCloseMobile}
           aria-hidden="true"
         />
       )}
 
+      {/* Desktop spacer to preserve layout width in flex flow */}
+      <div
+        className={`hidden lg:block shrink-0 transition-all duration-200 ${
+          isCollapsed ? 'w-[76px]' : 'w-[248px]'
+        }`}
+        aria-hidden="true"
+      />
+
       <aside
-        className={`bg-[#F3F3F5] border-r-0 flex flex-col justify-between shrink-0 select-none text-[#0A0A0A] transition-all duration-200 z-50 ${
-          // Mobile drawer vs Desktop
+        className={`bg-[#0F2A47] text-[#E6EDF5] border-r-0 flex flex-col justify-between shrink-0 select-none transition-all duration-200 z-40 ${
           isMobileOpen
-            ? 'fixed inset-y-0 left-0 w-[240px] shadow-2xl bg-white'
+            ? 'fixed inset-y-0 left-0 w-[248px] shadow-2xl bg-[#0F2A47] z-50'
             : isCollapsed
-            ? 'hidden lg:flex w-[68px]'
-            : 'hidden lg:flex w-[240px]'
+            ? 'hidden lg:flex fixed inset-y-0 left-0 w-[76px] h-screen shadow-[4px_0_24px_rgba(15,42,71,0.18)]'
+            : 'hidden lg:flex fixed inset-y-0 left-0 w-[248px] h-screen shadow-[4px_0_24px_rgba(15,42,71,0.18)]'
         }`}
         aria-label="Main sidebar navigation"
       >
-        <div className="flex flex-col h-full overflow-y-auto custom-scrollbar p-3">
+        <div className="flex flex-col h-full overflow-y-auto no-scrollbar p-3">
           {/* Workspace Brand / Header */}
-          <div className="flex items-center justify-between px-2 pt-1 pb-3 mb-2 border-b border-[#E3E3E6]">
+          <div className="flex items-center justify-between px-2 pt-2 pb-3 mb-2 border-b border-white/12">
             <div className={`flex items-center gap-2.5 overflow-hidden ${isCollapsed ? 'justify-center w-full' : ''}`}>
-              <div className="w-9 h-9 rounded-full bg-[#0A0A0A] text-white flex items-center justify-center shrink-0 shadow-2xs">
-                <LogoMark size={15} />
+              <div className="w-9 h-9 rounded-[10px] bg-white/12 text-white flex items-center justify-center shrink-0 border border-white/10">
+                <LogoMark size={16} />
               </div>
               {!isCollapsed && (
                 <div className="truncate">
-                  <div className="font-semibold text-[14px] text-[#0A0A0A] tracking-tight leading-tight truncate">
+                  <div className="font-semibold text-[15px] text-white tracking-tight leading-tight truncate">
                     Open Hours
                   </div>
-                  <div className="text-[11px] text-[#73737A] font-medium leading-none mt-0.5 truncate">
+                  <div className="text-[11px] text-[#9DB2C8] font-medium leading-none mt-0.5 truncate">
                     Console
                   </div>
                 </div>
               )}
             </div>
 
-            {/* Desktop collapse toggle button */}
-            {!isCollapsed && onToggleCollapse && (
-              <button
-                type="button"
-                onClick={onToggleCollapse}
-                className="hidden lg:flex w-8 h-8 rounded-full hover:bg-[#E9E9EC] text-[#73737A] hover:text-[#0A0A0A] items-center justify-center transition-colors cursor-pointer"
-                title="Collapse sidebar"
-                aria-label="Collapse sidebar"
-              >
-                <PanelLeftClose size={16} />
-              </button>
-            )}
-
             {/* Mobile Close Button */}
             {onCloseMobile && (
               <button
                 type="button"
                 onClick={onCloseMobile}
-                className="lg:hidden w-8 h-8 rounded-full hover:bg-[#E9E9EC] text-[#73737A] flex items-center justify-center transition-colors cursor-pointer"
+                className="lg:hidden w-8 h-8 rounded-lg hover:bg-[#17375A] text-[#9DB2C8] hover:text-white flex items-center justify-center transition-colors cursor-pointer"
                 aria-label="Close sidebar"
               >
-                <X size={16} />
+                <X size={18} />
               </button>
             )}
           </div>
-
-          {/* Desktop Expand Button when collapsed */}
-          {isCollapsed && onToggleCollapse && (
-            <div className="flex justify-center pb-2">
-              <button
-                type="button"
-                onClick={onToggleCollapse}
-                className="w-8 h-8 rounded-full hover:bg-[#E9E9EC] text-[#73737A] hover:text-[#0A0A0A] flex items-center justify-center transition-colors cursor-pointer"
-                title="Expand sidebar"
-                aria-label="Expand sidebar"
-              >
-                <PanelLeft size={16} />
-              </button>
-            </div>
-          )}
 
           {/* OVERVIEW (Single top-level item) */}
           <div className="mb-1">
@@ -339,41 +318,30 @@ export const Sidebar: React.FC<SidebarProps> = ({
               type="button"
               onClick={() => handleItemClick(NAVIGATION_CONFIG.overview.id, NAVIGATION_CONFIG.overview.label)}
               title={isCollapsed ? NAVIGATION_CONFIG.overview.label : undefined}
-              className={`w-full h-10 flex items-center rounded-full text-[14px] transition-all cursor-pointer ${
-                isCollapsed ? 'justify-center px-0' : 'gap-2.5 px-3.5'
+              className={`w-full h-[44px] flex items-center rounded-[10px] text-[15px] transition-all cursor-pointer relative ${
+                isCollapsed ? 'justify-center px-0' : 'gap-3 px-3'
               } ${
                 isOverviewActive
-                  ? 'bg-[#E9E9EC] text-[#0A0A0A] font-semibold shadow-2xs'
-                  : 'text-[#4A4A4F] hover:bg-[#E9E9EC]/70 hover:text-[#0A0A0A] font-medium'
+                  ? 'bg-[#1D4373] text-white font-medium after:content-[\'\'] after:absolute after:right-0 after:top-1.5 after:bottom-1.5 after:w-[3px] after:bg-[var(--accent)] after:rounded-l'
+                  : 'text-[#E6EDF5] hover:bg-[#17375A] hover:text-white font-normal'
               }`}
             >
               <OverviewIcon
-                size={18}
-                className={isOverviewActive ? 'text-[#0A0A0A] shrink-0' : 'text-[#73737A] shrink-0'}
+                size={20}
+                className={isOverviewActive ? 'text-white shrink-0' : 'text-[#E6EDF5] shrink-0'}
               />
               {!isCollapsed && <span className="truncate">{NAVIGATION_CONFIG.overview.label}</span>}
             </button>
           </div>
 
           {/* Collapsible Groups or Loading Skeleton */}
-          <nav className="space-y-2 flex-1" aria-label="Navigation groups">
+          <nav className="space-y-1 flex-1" aria-label="Navigation groups">
             {isLoading ? (
               <div className="space-y-3 px-1 py-2 animate-pulse" aria-label="Loading navigation skeleton">
                 <div className="space-y-2">
-                  <div className="h-3 bg-[#E3E3E6] rounded w-16 mx-2" />
-                  <div className="h-10 bg-[#E9E9EC] rounded-full w-full" />
-                  <div className="h-10 bg-[#E9E9EC] rounded-full w-full" />
-                  <div className="h-10 bg-[#E9E9EC] rounded-full w-full" />
-                </div>
-                <div className="space-y-2 pt-2">
-                  <div className="h-3 bg-[#E3E3E6] rounded w-20 mx-2" />
-                  <div className="h-10 bg-[#E9E9EC] rounded-full w-full" />
-                  <div className="h-10 bg-[#E9E9EC] rounded-full w-full" />
-                </div>
-                <div className="space-y-2 pt-2">
-                  <div className="h-3 bg-[#E3E3E6] rounded w-14 mx-2" />
-                  <div className="h-10 bg-[#E9E9EC] rounded-full w-full" />
-                  <div className="h-10 bg-[#E9E9EC] rounded-full w-full" />
+                  <div className="h-3 bg-white/10 rounded w-16 mx-2" />
+                  <div className="h-10 bg-white/5 rounded-[10px] w-full" />
+                  <div className="h-10 bg-white/5 rounded-[10px] w-full" />
                 </div>
               </div>
             ) : (
@@ -381,30 +349,30 @@ export const Sidebar: React.FC<SidebarProps> = ({
                 const isGroupCollapsed = Boolean(collapsedGroups[group.id]);
 
                 return (
-                  <div key={group.id} className="space-y-0.5">
+                  <div key={group.id} className="space-y-0.5 pt-1">
                     {/* Group Header with chevron and small uppercase muted label */}
                     {!isCollapsed ? (
                       <button
                         type="button"
                         onClick={() => toggleGroup(group.id)}
-                        className="w-full flex items-center justify-between px-3 pt-3 pb-1 text-[11px] font-semibold tracking-wider text-[#73737A] uppercase hover:text-[#0A0A0A] transition-colors cursor-pointer group"
+                        className="w-full flex items-center justify-between px-3 pt-3 pb-1 text-[11px] font-semibold tracking-wider text-[#9DB2C8] uppercase hover:text-white transition-colors cursor-pointer group"
                         aria-expanded={!isGroupCollapsed}
                       >
                         <span className="truncate">{group.label}</span>
                         <ChevronDown
-                          size={12}
-                          className={`text-[#73737A] transition-transform duration-200 group-hover:text-[#0A0A0A] ${
+                          size={13}
+                          className={`text-[#9DB2C8] transition-transform duration-200 group-hover:text-white ${
                             isGroupCollapsed ? '-rotate-90' : 'rotate-0'
                           }`}
                         />
                       </button>
                     ) : (
-                      <div className="h-px bg-[#E3E3E6] my-1" />
+                      <div className="h-px bg-white/12 my-2" />
                     )}
 
                     {/* Items List */}
                     {(!isGroupCollapsed || isCollapsed) && (
-                      <div className="space-y-1">
+                      <div className="space-y-0.5">
                         {group.items.map((item) => {
                           const Icon = ICON_MAP[item.icon] || LayoutDashboard;
 
@@ -424,18 +392,18 @@ export const Sidebar: React.FC<SidebarProps> = ({
                               type="button"
                               onClick={() => handleItemClick(item.id, item.label)}
                               title={isCollapsed ? item.label : undefined}
-                              className={`w-full h-10 flex items-center justify-between rounded-full text-[14px] transition-all cursor-pointer ${
-                                isCollapsed ? 'justify-center px-0' : 'px-3.5'
+                              className={`w-full h-[44px] flex items-center justify-between rounded-[10px] text-[15px] transition-all cursor-pointer relative ${
+                                isCollapsed ? 'justify-center px-0' : 'px-3'
                               } ${
                                 isActive
-                                  ? 'bg-[#E9E9EC] text-[#0A0A0A] font-semibold shadow-2xs'
-                                  : 'text-[#4A4A4F] hover:bg-[#E9E9EC]/70 hover:text-[#0A0A0A] font-medium'
+                                  ? 'bg-[#1D4373] text-white font-medium after:content-[\'\'] after:absolute after:right-0 after:top-1.5 after:bottom-1.5 after:w-[3px] after:bg-[var(--accent)] after:rounded-l'
+                                  : 'text-[#E6EDF5] hover:bg-[#17375A] hover:text-white font-normal'
                               }`}
                             >
-                              <div className={`flex items-center gap-2.5 truncate ${isCollapsed ? 'justify-center' : ''}`}>
+                              <div className={`flex items-center gap-3 truncate ${isCollapsed ? 'justify-center' : ''}`}>
                                 <Icon
-                                  size={18}
-                                  className={isActive ? 'text-[#0A0A0A] shrink-0' : 'text-[#73737A] shrink-0'}
+                                  size={20}
+                                  className={isActive ? 'text-white shrink-0' : 'text-[#E6EDF5] shrink-0'}
                                 />
                                 {!isCollapsed && <span className="truncate">{item.label}</span>}
                               </div>
@@ -444,8 +412,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
                                 <span
                                   className={`px-2 min-w-[20px] h-5 rounded-full text-[11px] font-semibold flex items-center justify-center shrink-0 ${
                                     item.badgeKey === 'tasks'
-                                      ? 'bg-[#E7F8EF] text-[#027A48]'
-                                      : 'bg-[#FEECEB] text-[#B42318]'
+                                      ? 'bg-[var(--accent)] text-white'
+                                      : 'bg-[#DC2626] text-white'
                                   }`}
                                 >
                                   {badgeValue}
@@ -462,53 +430,77 @@ export const Sidebar: React.FC<SidebarProps> = ({
             )}
           </nav>
 
-          {/* Bottom Pinned Area: MRR target progress card + Role Switcher */}
-          {!isCollapsed && (
-            <div className="pt-2.5 space-y-2 mt-2 border-t border-[#E3E3E6] shrink-0">
-              {/* Pinned Card: MRR target progress (soft grey rounded card) */}
-              <div
-                onClick={() => handleItemClick('mrr', 'MRR Roadmap')}
-                className="bg-[#E9E9EC] rounded-[16px] p-3.5 hover:bg-[#E3E3E6] transition-all cursor-pointer shadow-2xs"
-                role="button"
-                tabIndex={0}
-                onKeyDown={(e) => e.key === 'Enter' && handleItemClick('mrr', 'MRR Roadmap')}
+          {/* Bottom Pinned Area: MRR target progress card + Role Switcher + Collapse Control */}
+          <div className="pt-2.5 space-y-2 mt-2 border-t border-white/12 shrink-0">
+            {!isCollapsed && (
+              <>
+                {/* Pinned Card: MRR target progress (translucent navy card rgba(255,255,255,0.08)) */}
+                <div
+                  onClick={() => handleItemClick('mrr', 'MRR Roadmap')}
+                  className="bg-white/[0.08] border border-white/10 rounded-[12px] p-3.5 hover:bg-white/[0.12] transition-all cursor-pointer"
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => e.key === 'Enter' && handleItemClick('mrr', 'MRR Roadmap')}
+                >
+                  <div className="flex items-center justify-between text-xs mb-1">
+                    <span className="text-[#9DB2C8] text-[11.5px] font-medium">
+                      MRR Target Progress
+                    </span>
+                    <span className="text-white text-[11.5px] font-semibold tabular-nums">
+                      {mrrData.progressPct}%
+                    </span>
+                  </div>
+
+                  <div className="flex items-baseline justify-between mb-2">
+                    <div className="text-[14px] font-semibold text-white tabular-nums">
+                      €{mrrData.currentMrr.toLocaleString()}
+                    </div>
+                    <div className="text-[12px] font-medium text-[#9DB2C8] tabular-nums">
+                      Goal: €{mrrData.goalMrr.toLocaleString()}
+                    </div>
+                  </div>
+
+                  {/* Progress bar: slim rounded bar filled with accent blue */}
+                  <div className="w-full h-2 rounded-full bg-white/15 overflow-hidden">
+                    <div
+                      className="h-full rounded-full bg-[var(--accent)] transition-all duration-500"
+                      style={{ width: `${mrrData.progressPct}%` }}
+                    />
+                  </div>
+                </div>
+
+                {/* Role Indicator */}
+                <div className="flex items-center justify-between px-1 text-[11.5px] text-[#9DB2C8]">
+                  <span className="font-medium text-[#9DB2C8]">Role:</span>
+                  <span className="font-semibold text-white">
+                    {effectiveRole}
+                  </span>
+                </div>
+              </>
+            )}
+
+            {/* Collapse Control at bottom (icon + label) */}
+            {onToggleCollapse && (
+              <button
+                type="button"
+                onClick={onToggleCollapse}
+                className={`w-full h-11 flex items-center rounded-[10px] text-[14px] text-[#9DB2C8] hover:text-white hover:bg-[#17375A] transition-colors cursor-pointer ${
+                  isCollapsed ? 'justify-center px-0' : 'px-3 gap-2.5'
+                }`}
+                title={isCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
+                aria-label={isCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
               >
-                <div className="flex items-center justify-between text-xs mb-1">
-                  <span className="text-[#73737A] text-[11.5px] font-medium">
-                    MRR Target Progress
-                  </span>
-                  <span className="text-[#0A0A0A] text-[11.5px] font-semibold">
-                    {mrrData.progressPct}%
-                  </span>
-                </div>
-
-                <div className="flex items-baseline justify-between mb-2">
-                  <div className="text-[14px] font-bold text-[#0A0A0A] tabular-nums">
-                    €{mrrData.currentMrr.toLocaleString()}
-                  </div>
-                  <div className="text-[12px] font-medium text-[#73737A] tabular-nums">
-                    Goal: €{mrrData.goalMrr.toLocaleString()}
-                  </div>
-                </div>
-
-                {/* Progress bar: 8px tall rounded, filled part deep blue #1627E8 */}
-                <div className="w-full h-2 rounded-full bg-[#C9C9CC] overflow-hidden">
-                  <div
-                    className="h-full rounded-full bg-[#1627E8] transition-all duration-500"
-                    style={{ width: `${mrrData.progressPct}%` }}
-                  />
-                </div>
-              </div>
-
-              {/* Role Indicator */}
-              <div className="flex items-center justify-between px-1 text-[11.5px] text-[#73737A]">
-                <span className="font-medium text-[#73737A]">Role:</span>
-                <span className="font-semibold text-[#0A0A0A]">
-                  {effectiveRole}
-                </span>
-              </div>
-            </div>
-          )}
+                {isCollapsed ? (
+                  <PanelLeft size={20} strokeWidth={1.75} />
+                ) : (
+                  <>
+                    <PanelLeftClose size={20} strokeWidth={1.75} />
+                    <span>Collapse</span>
+                  </>
+                )}
+              </button>
+            )}
+          </div>
         </div>
       </aside>
     </>

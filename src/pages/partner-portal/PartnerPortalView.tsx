@@ -117,7 +117,7 @@ export const PartnerPortalView: React.FC<PartnerPortalViewProps> = ({
   // Branding Customization State (Branded Type)
   const [brandingLogoUrl, setBrandingLogoUrl] = useState('');
   const [brandingName, setBrandingName] = useState('');
-  const [brandingColor, setBrandingColor] = useState('#D92D50');
+  const [brandingColor, setBrandingColor] = useState('#1F5FA8');
   const [uploadingLogo, setUploadingLogo] = useState(false);
   const [logoUploadError, setLogoUploadError] = useState<string | null>(null);
   const [savingBranding, setSavingBranding] = useState(false);
@@ -226,7 +226,7 @@ export const PartnerPortalView: React.FC<PartnerPortalViewProps> = ({
       setData(vm);
       setBrandingLogoUrl(vm.branding.logoUrl || '');
       setBrandingName(vm.branding.brandName || vm.partner.organisation);
-      setBrandingColor(vm.branding.primaryColor || '#D92D50');
+      setBrandingColor(vm.branding.primaryColor || '#1F5FA8');
     }
     await loadPartnerPitches();
     setLoading(false);
@@ -311,7 +311,7 @@ export const PartnerPortalView: React.FC<PartnerPortalViewProps> = ({
   if (loading || !data) {
     return (
       <div className="min-h-screen bg-[#F6F5F5] flex flex-col items-center justify-center p-6 text-center">
-        <div className="w-10 h-10 border-3 border-[#D92D50] border-t-transparent rounded-full animate-spin mb-4" />
+        <div className="w-10 h-10 border-3 border-[var(--accent)] border-t-transparent rounded-full animate-spin mb-4" />
         <p className="text-xs font-semibold text-[#6B6B6B]">Loading Partner Portal...</p>
       </div>
     );
@@ -330,7 +330,7 @@ export const PartnerPortalView: React.FC<PartnerPortalViewProps> = ({
   const isBrandedPortal =
     data.partner.portalType === 'Branded partner portal (partner logo, name, colours)';
 
-  const activeAccentColor = isBrandedPortal ? brandingColor || '#D92D50' : '#D92D50';
+  const activeAccentColor = isBrandedPortal ? brandingColor || '#1F5FA8' : '#1F5FA8';
   const contrastTextColor = getContrastTextColor(activeAccentColor);
   const activeBrandName = isBrandedPortal ? brandingName || data.partner.organisation : 'Open Hours';
 
@@ -442,11 +442,11 @@ export const PartnerPortalView: React.FC<PartnerPortalViewProps> = ({
   };
 
   // Preset colour swatches
-  const colorPresets = ['#D92D50', '#2563EB', '#059669', '#7C3AED', '#EA580C', '#0D9488', '#111111'];
+  const colorPresets = ['#1F5FA8', '#2563EB', '#059669', '#7C3AED', '#EA580C', '#0D9488', '#111111'];
 
   return (
     <PortalThemeProvider theme={theme}>
-      <div className="min-h-screen bg-[#F6F5F5] text-[#111111] font-sans antialiased pb-20 flex flex-col">
+      <div className="min-h-screen bg-[#F3F4F6] text-[#111827] font-sans antialiased pb-20 flex flex-col" style={{ "--accent": activeAccentColor } as React.CSSProperties}>
         {/* Sticky Admin Preview Banner */}
         {isPreview && (
           <div className="sticky top-0 z-50 bg-[#111111] text-white px-4 py-2.5 flex items-center justify-between text-xs font-semibold shadow-md border-b border-white/10">
@@ -477,7 +477,7 @@ export const PartnerPortalView: React.FC<PartnerPortalViewProps> = ({
         )}
 
         {/* Portal Header */}
-        <header className="bg-white border-b border-black/5 px-6 py-4">
+        <header className="bg-white border-b border-[#E5E7EB] px-6 py-4">
           <div className="max-w-6xl mx-auto flex items-center justify-between flex-wrap gap-4">
             <div className="flex items-center gap-3.5">
               {isBrandedPortal && brandingLogoUrl ? (
@@ -516,7 +516,7 @@ export const PartnerPortalView: React.FC<PartnerPortalViewProps> = ({
             </div>
 
             {/* Navigation Tabs (Max 5 tabs) */}
-            <nav className="flex items-center gap-1 bg-[#F8F7F7] p-1 rounded-full border border-black/5">
+            <nav className="flex items-center gap-1 bg-[#F8F7F7] p-1 rounded-full border border-[#E5E7EB]">
               <button
                 type="button"
                 onClick={() => setActiveTab('home')}
@@ -613,7 +613,7 @@ export const PartnerPortalView: React.FC<PartnerPortalViewProps> = ({
                 className="h-[34px] px-3.5 rounded-full bg-white border border-[#D0D5DD] hover:bg-[#F2F4F7] text-[#344054] text-xs font-semibold flex items-center gap-1.5 transition-colors cursor-pointer shadow-2xs"
                 title="Sign out of partner portal"
               >
-                <LogOut size={12} className="text-[#D92D50]" />
+                <LogOut size={12} className="text-[#6B7280]" />
                 <span>Sign Out</span>
               </button>
             )}
@@ -626,7 +626,7 @@ export const PartnerPortalView: React.FC<PartnerPortalViewProps> = ({
           {activeTab === 'home' && (
             <div className="space-y-6 animate-in fade-in duration-150">
               {/* Partner Overview Welcome Card */}
-              <div className="bg-white rounded-3xl p-6 border border-black/5 shadow-xs flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+              <div className="bg-white rounded-[12px] p-6 border border-[#E5E7EB] shadow-xs flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
                 <div>
                   <span className="text-[11px] font-bold uppercase tracking-wider text-[#A8A5A5] block mb-1">
                     Partner Workspace
@@ -660,7 +660,7 @@ export const PartnerPortalView: React.FC<PartnerPortalViewProps> = ({
 
               {/* Outstanding Admin Requests (e.g. Logo Request) */}
               {data.requests.length > 0 && (
-                <div className="bg-amber-50 rounded-2xl p-4 border border-amber-200 shadow-2xs space-y-3">
+                <div className="bg-amber-50 rounded-[12px] p-4 border border-amber-200 shadow-2xs space-y-3">
                   <div className="flex items-center gap-2 text-amber-800 font-bold text-xs">
                     <AlertTriangle size={15} />
                     <span>Action Required from Open Hours</span>
@@ -696,7 +696,7 @@ export const PartnerPortalView: React.FC<PartnerPortalViewProps> = ({
 
               {/* KPI Cards Row (Real Selectors Only) */}
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div className="bg-white rounded-2xl p-4.5 border border-black/5 shadow-2xs">
+                <div className="bg-white rounded-[12px] p-4.5 border border-[#E5E7EB] shadow-2xs">
                   <span className="text-[11px] font-semibold text-[#A8A5A5] block mb-1">
                     Clients Referred
                   </span>
@@ -715,7 +715,7 @@ export const PartnerPortalView: React.FC<PartnerPortalViewProps> = ({
                   )}
                 </div>
 
-                <div className="bg-white rounded-2xl p-4.5 border border-black/5 shadow-2xs">
+                <div className="bg-white rounded-[12px] p-4.5 border border-[#E5E7EB] shadow-2xs">
                   <span className="text-[11px] font-semibold text-[#A8A5A5] block mb-1">
                     New This Month
                   </span>
@@ -727,7 +727,7 @@ export const PartnerPortalView: React.FC<PartnerPortalViewProps> = ({
                   </div>
                 </div>
 
-                <div className="bg-white rounded-2xl p-4.5 border border-black/5 shadow-2xs">
+                <div className="bg-white rounded-[12px] p-4.5 border border-[#E5E7EB] shadow-2xs">
                   <span className="text-[11px] font-semibold text-[#A8A5A5] block mb-1">
                     Earnings This Month
                   </span>
@@ -747,7 +747,7 @@ export const PartnerPortalView: React.FC<PartnerPortalViewProps> = ({
                   </span>
                 </div>
 
-                <div className="bg-white rounded-2xl p-4.5 border border-black/5 shadow-2xs">
+                <div className="bg-white rounded-[12px] p-4.5 border border-[#E5E7EB] shadow-2xs">
                   <span className="text-[11px] font-semibold text-[#A8A5A5] block mb-1">
                     Earnings Balance
                   </span>
@@ -766,7 +766,7 @@ export const PartnerPortalView: React.FC<PartnerPortalViewProps> = ({
               </div>
 
               {/* Deal Terms Breakdown Pill */}
-              <div className="bg-white rounded-2xl p-5 border border-black/5 shadow-2xs flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+              <div className="bg-white rounded-[12px] p-5 border border-[#E5E7EB] shadow-2xs flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
                 <div className="space-y-1">
                   <div className="flex items-center gap-2">
                     <ShieldCheck size={16} className="text-emerald-600" />
@@ -790,7 +790,7 @@ export const PartnerPortalView: React.FC<PartnerPortalViewProps> = ({
               </div>
 
               {/* Recent Clients preview */}
-              <div className="bg-white rounded-2xl p-5 border border-black/5 shadow-2xs space-y-4">
+              <div className="bg-white rounded-[12px] p-5 border border-[#E5E7EB] shadow-2xs space-y-4">
                 <div className="flex items-center justify-between">
                   <h3 className="text-xs font-bold text-[#111111] uppercase tracking-wider">
                     Recent Clinic Referrals
@@ -874,7 +874,7 @@ export const PartnerPortalView: React.FC<PartnerPortalViewProps> = ({
 
               {/* Outcome Counters Row */}
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                <div className="p-4 rounded-2xl bg-white border border-black/5 shadow-xs flex items-center justify-between">
+                <div className="p-4 rounded-[12px] bg-white border border-[#E5E7EB] shadow-xs flex items-center justify-between">
                   <div>
                     <span className="text-[11px] font-bold uppercase tracking-wider text-[#6B6B6B] block">
                       Interested
@@ -888,7 +888,7 @@ export const PartnerPortalView: React.FC<PartnerPortalViewProps> = ({
                   </div>
                 </div>
 
-                <div className="p-4 rounded-2xl bg-white border border-black/5 shadow-xs flex items-center justify-between">
+                <div className="p-4 rounded-[12px] bg-white border border-[#E5E7EB] shadow-xs flex items-center justify-between">
                   <div>
                     <span className="text-[11px] font-bold uppercase tracking-wider text-[#6B6B6B] block">
                       Agreed
@@ -902,7 +902,7 @@ export const PartnerPortalView: React.FC<PartnerPortalViewProps> = ({
                   </div>
                 </div>
 
-                <div className="p-4 rounded-2xl bg-white border border-black/5 shadow-xs flex items-center justify-between">
+                <div className="p-4 rounded-[12px] bg-white border border-[#E5E7EB] shadow-xs flex items-center justify-between">
                   <div>
                     <span className="text-[11px] font-bold uppercase tracking-wider text-[#6B6B6B] block">
                       Rejected
@@ -919,7 +919,7 @@ export const PartnerPortalView: React.FC<PartnerPortalViewProps> = ({
 
               {/* Privacy Notice Banner */}
               {!data.visibility.enabled && (
-                <div className="p-3.5 rounded-2xl bg-gray-50 border border-black/5 text-[11px] text-[#6B6B6B] flex items-center gap-2">
+                <div className="p-3.5 rounded-[12px] bg-gray-50 border border-[#E5E7EB] text-[11px] text-[#6B6B6B] flex items-center gap-2">
                   <Lock size={14} className="shrink-0 text-[#A8A5A5]" />
                   <span>
                     Privacy Shield Active: Contact names and detailed monthly reports are held by Open Hours administration under GDPR client data separation.
@@ -928,10 +928,10 @@ export const PartnerPortalView: React.FC<PartnerPortalViewProps> = ({
               )}
 
               {/* Table */}
-              <div className="bg-white rounded-[24px] border border-black/5 p-4 shadow-xs overflow-hidden">
+              <div className="bg-white rounded-[12px] border border-[#E5E7EB] p-4 shadow-xs overflow-hidden">
                 <div className="overflow-x-auto custom-scrollbar">
                   <table className="w-full text-left text-xs">
-                    <thead className="bg-[#F8F7F7] text-[#A8A5A5] uppercase font-bold text-[10px] tracking-wider border-b border-black/5">
+                    <thead className="bg-[#F8F7F7] text-[#A8A5A5] uppercase font-bold text-[10px] tracking-wider border-b border-[#E5E7EB]">
                       <tr>
                         <th className="py-3 px-3.5">Business Name</th>
                         <th className="py-3 px-3">Contact</th>
@@ -1129,7 +1129,7 @@ export const PartnerPortalView: React.FC<PartnerPortalViewProps> = ({
               </div>
 
               {/* 6-Month Growth Chart */}
-              <div className="bg-white rounded-3xl p-6 border border-black/5 shadow-xs space-y-4">
+              <div className="bg-white rounded-[12px] p-6 border border-[#E5E7EB] shadow-xs space-y-4">
                 <div className="flex items-center justify-between">
                   <div>
                     <h3 className="text-xs font-bold text-[#111111] uppercase tracking-wider">
@@ -1197,7 +1197,7 @@ export const PartnerPortalView: React.FC<PartnerPortalViewProps> = ({
 
               {/* Financial Balance Summary */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div className="bg-white rounded-2xl p-5 border border-black/5 shadow-2xs">
+                <div className="bg-white rounded-[12px] p-5 border border-[#E5E7EB] shadow-2xs">
                   <span className="text-[11px] font-semibold text-[#A8A5A5] block mb-1">
                     Total Partner Share Earned
                   </span>
@@ -1209,7 +1209,7 @@ export const PartnerPortalView: React.FC<PartnerPortalViewProps> = ({
                   </span>
                 </div>
 
-                <div className="bg-white rounded-2xl p-5 border border-black/5 shadow-2xs">
+                <div className="bg-white rounded-[12px] p-5 border border-[#E5E7EB] shadow-2xs">
                   <span className="text-[11px] font-semibold text-[#A8A5A5] block mb-1">
                     Total Earnings Paid Out
                   </span>
@@ -1221,7 +1221,7 @@ export const PartnerPortalView: React.FC<PartnerPortalViewProps> = ({
                   </span>
                 </div>
 
-                <div className="bg-white rounded-2xl p-5 border border-black/5 shadow-2xs">
+                <div className="bg-white rounded-[12px] p-5 border border-[#E5E7EB] shadow-2xs">
                   <span className="text-[11px] font-semibold text-[#A8A5A5] block mb-1">
                     Current Balance Owed
                   </span>
@@ -1238,7 +1238,7 @@ export const PartnerPortalView: React.FC<PartnerPortalViewProps> = ({
               </div>
 
               {/* Breakdown per referred client */}
-              <div className="bg-white rounded-3xl p-6 border border-black/5 shadow-xs space-y-4">
+              <div className="bg-white rounded-[12px] p-6 border border-[#E5E7EB] shadow-xs space-y-4">
                 <div>
                   <h3 className="text-xs font-bold text-[#111111] uppercase tracking-wider">
                     Earnings Breakdown by Referred Clinic
@@ -1250,7 +1250,7 @@ export const PartnerPortalView: React.FC<PartnerPortalViewProps> = ({
 
                 <div className="overflow-x-auto custom-scrollbar">
                   <table className="w-full text-left text-xs">
-                    <thead className="bg-[#F8F7F7] text-[#A8A5A5] uppercase font-bold text-[10px] tracking-wider border-b border-black/5">
+                    <thead className="bg-[#F8F7F7] text-[#A8A5A5] uppercase font-bold text-[10px] tracking-wider border-b border-[#E5E7EB]">
                       <tr>
                         <th className="py-2.5 px-3">Clinic Practice</th>
                         <th className="py-2.5 px-3">Package Tier</th>
@@ -1299,7 +1299,7 @@ export const PartnerPortalView: React.FC<PartnerPortalViewProps> = ({
             <div className="space-y-6 animate-in fade-in duration-150">
               {/* Sub-Tabs Pill Selector */}
               <div className="flex items-center justify-center">
-                <div className="inline-flex p-1 bg-[#EBE8E8] rounded-full border border-black/5">
+                <div className="inline-flex p-1 bg-[#EBE8E8] rounded-full border border-[#E5E7EB]">
                   <button
                     type="button"
                     onClick={() => setAddClientSubTab('pitch')}
@@ -1359,7 +1359,7 @@ export const PartnerPortalView: React.FC<PartnerPortalViewProps> = ({
                   </div>
 
                   {/* Legal / IP Compliance Note */}
-                  <div className="p-3.5 rounded-2xl bg-amber-50/70 border border-amber-200/60 text-[11px] text-amber-900 flex items-start gap-2.5">
+                  <div className="p-3.5 rounded-[12px] bg-amber-50/70 border border-amber-200/60 text-[11px] text-amber-900 flex items-start gap-2.5">
                     <Info size={15} className="text-amber-700 shrink-0 mt-0.5" />
                     <span>
                       <strong>Compliance note:</strong> Use only information you are allowed to use. Do not copy a third party's text or images.
@@ -1370,7 +1370,7 @@ export const PartnerPortalView: React.FC<PartnerPortalViewProps> = ({
                   {loadingPitches ? (
                     <div className="py-12 text-center text-xs text-[#6B6B6B]">Loading pitches...</div>
                   ) : partnerPitches.proposals.length === 0 ? (
-                    <div className="bg-white rounded-3xl p-12 text-center border border-dashed border-black/10 space-y-3">
+                    <div className="bg-white rounded-[12px] p-12 text-center border border-dashed border-black/10 space-y-3">
                       <Sparkles size={36} className="mx-auto text-amber-400" />
                       <div className="font-bold text-sm text-[#111111]">No pitch proposals created yet</div>
                       <p className="text-xs text-[#6B6B6B] max-w-md mx-auto">
@@ -1397,7 +1397,7 @@ export const PartnerPortalView: React.FC<PartnerPortalViewProps> = ({
                           return (
                             <div
                               key={prop.id}
-                              className="bg-[#FAFAFA] rounded-3xl border border-black/5 p-4 flex items-center justify-between opacity-60"
+                              className="bg-[#FAFAFA] rounded-[12px] border border-[#E5E7EB] p-4 flex items-center justify-between opacity-60"
                             >
                               <div>
                                 <span className="text-[10px] uppercase font-bold text-[#A8A5A5] block">
@@ -1428,7 +1428,7 @@ export const PartnerPortalView: React.FC<PartnerPortalViewProps> = ({
                         return (
                           <div
                             key={prop.id}
-                            className="bg-white rounded-3xl border border-black/10 p-5 shadow-xs flex flex-col justify-between hover:shadow-md transition-shadow"
+                            className="bg-white rounded-[12px] border border-black/10 p-5 shadow-xs flex flex-col justify-between hover:shadow-md transition-shadow"
                           >
                             <div className="space-y-3">
                               <div className="flex items-start justify-between gap-2">
@@ -1462,7 +1462,7 @@ export const PartnerPortalView: React.FC<PartnerPortalViewProps> = ({
                                 </div>
                               </div>
 
-                              <div className="space-y-1.5 text-xs text-[#6B6B6B] border-t border-b border-black/5 py-2.5">
+                              <div className="space-y-1.5 text-xs text-[#6B6B6B] border-t border-b border-[#E5E7EB] py-2.5">
                                 <div className="flex items-center justify-between">
                                   <span>Package items:</span>
                                   <span className="font-semibold text-[#111111]">
@@ -1549,7 +1549,7 @@ export const PartnerPortalView: React.FC<PartnerPortalViewProps> = ({
               {/* SUB-TAB 2: ADD CLIENT FORM */}
               {/* ========================================================================= */}
               {addClientSubTab === 'add_client' && (
-                <div className="max-w-2xl mx-auto bg-white rounded-3xl p-6 sm:p-8 border border-black/5 shadow-xs space-y-6">
+                <div className="max-w-2xl mx-auto bg-white rounded-[12px] p-6 sm:p-8 border border-[#E5E7EB] shadow-xs space-y-6">
                   <div>
                     <span className="text-[11px] font-bold uppercase tracking-wider text-[#A8A5A5] block mb-1">
                       New Client Referral
@@ -1564,7 +1564,7 @@ export const PartnerPortalView: React.FC<PartnerPortalViewProps> = ({
 
                   {/* Pre-filled from Won Proposal Alert */}
                   {prefilledFromWonProposal && (
-                    <div className="p-3.5 rounded-2xl bg-emerald-50 border border-emerald-200 text-xs text-emerald-800 flex items-start justify-between gap-3">
+                    <div className="p-3.5 rounded-[12px] bg-emerald-50 border border-emerald-200 text-xs text-emerald-800 flex items-start justify-between gap-3">
                       <div className="flex items-center gap-2">
                         <CheckCircle2 size={16} className="text-emerald-600 shrink-0" />
                         <div>
@@ -1698,7 +1698,7 @@ export const PartnerPortalView: React.FC<PartnerPortalViewProps> = ({
                             key={item.id}
                             type="button"
                             onClick={() => setNewPkgChoice(item.id as any)}
-                            className={`p-3 rounded-2xl border text-left transition-all cursor-pointer ${
+                            className={`p-3 rounded-[12px] border text-left transition-all cursor-pointer ${
                               newPkgChoice === item.id
                                 ? 'border-[#111111] bg-[#111111] text-white shadow-xs'
                                 : 'border-black/10 bg-white hover:border-black/20 text-[#111111]'
@@ -1717,7 +1717,7 @@ export const PartnerPortalView: React.FC<PartnerPortalViewProps> = ({
                       </div>
 
                       {newPkgChoice === 'Custom' && (
-                        <div className="mt-3 p-3.5 rounded-2xl bg-[#F8F7F7] border border-black/5 grid grid-cols-2 gap-3 animate-in fade-in duration-150">
+                        <div className="mt-3 p-3.5 rounded-[12px] bg-[#F8F7F7] border border-[#E5E7EB] grid grid-cols-2 gap-3 animate-in fade-in duration-150">
                           <div>
                             <label className="block text-[11px] font-semibold text-[#111111] mb-1">
                               Claimed Monthly Price
@@ -1747,7 +1747,7 @@ export const PartnerPortalView: React.FC<PartnerPortalViewProps> = ({
                     </div>
 
                     {/* Create Client Portal Toggle */}
-                    <div className="p-4 rounded-2xl bg-[#F8F7F7] border border-black/5 flex items-center justify-between gap-4">
+                    <div className="p-4 rounded-[12px] bg-[#F8F7F7] border border-[#E5E7EB] flex items-center justify-between gap-4">
                       <div>
                         <span className="text-xs font-bold text-[#111111] block">
                           Provision Client Portal on Approval
@@ -1798,7 +1798,7 @@ export const PartnerPortalView: React.FC<PartnerPortalViewProps> = ({
 
           {/* TAB 5: BRANDING (Branded type only) */}
           {activeTab === 'branding' && isBrandedPortal && (
-            <div className="max-w-2xl mx-auto bg-white rounded-3xl p-6 sm:p-8 border border-black/5 shadow-xs space-y-6 animate-in fade-in duration-150">
+            <div className="max-w-2xl mx-auto bg-white rounded-[12px] p-6 sm:p-8 border border-[#E5E7EB] shadow-xs space-y-6 animate-in fade-in duration-150">
               <div>
                 <span className="text-[11px] font-bold uppercase tracking-wider text-[#A8A5A5] block mb-1">
                   Branded White-Labeling
@@ -1816,13 +1816,13 @@ export const PartnerPortalView: React.FC<PartnerPortalViewProps> = ({
                 <label className="block text-xs font-semibold text-[#111111]">
                   Partner Brand Logo (PNG, JPG, SVG up to 2 MB)
                 </label>
-                <div className="p-5 border-2 border-dashed border-black/10 rounded-2xl flex flex-col items-center justify-center text-center space-y-3 bg-[#FBFBFB]">
+                <div className="p-5 border-2 border-dashed border-black/10 rounded-[12px] flex flex-col items-center justify-center text-center space-y-3 bg-[#FBFBFB]">
                   {brandingLogoUrl ? (
                     <div className="space-y-2 flex flex-col items-center">
                       <img
                         src={brandingLogoUrl}
                         alt="Preview"
-                        className="h-12 max-w-[200px] object-contain rounded-md border border-black/5 p-1 bg-white"
+                        className="h-12 max-w-[200px] object-contain rounded-md border border-[#E5E7EB] p-1 bg-white"
                       />
                       <span className="text-[11px] text-emerald-700 font-semibold flex items-center gap-1">
                         <CheckCircle2 size={13} />
@@ -1884,7 +1884,7 @@ export const PartnerPortalView: React.FC<PartnerPortalViewProps> = ({
                     type="text"
                     value={brandingColor}
                     onChange={(e) => setBrandingColor(e.target.value)}
-                    placeholder="#D92D50"
+                    placeholder="#1F5FA8"
                     className="w-32 text-xs font-mono px-3 py-2 rounded-xl border border-black/10 focus:outline-none focus:ring-1 focus:ring-black uppercase"
                   />
                   {/* Preset swatches */}
@@ -1903,9 +1903,9 @@ export const PartnerPortalView: React.FC<PartnerPortalViewProps> = ({
                 </div>
 
                 {/* Contrast analysis pill */}
-                <div className="p-3 rounded-xl bg-[#F8F7F7] border border-black/5 flex items-center justify-between text-xs">
+                <div className="p-3 rounded-xl bg-[#F8F7F7] border border-[#E5E7EB] flex items-center justify-between text-xs">
                   <div className="flex items-center gap-2">
-                    <Sparkles size={14} className="text-[#D92D50]" />
+                    <Sparkles size={14} className="text-[var(--accent)]" />
                     <span>Contrast & Text Readability:</span>
                   </div>
                   <div className="flex items-center gap-2 font-bold">
@@ -1926,7 +1926,7 @@ export const PartnerPortalView: React.FC<PartnerPortalViewProps> = ({
               </div>
 
               {/* Powered by Open Hours Status */}
-              <div className="p-4 rounded-2xl bg-[#F8F7F7] border border-black/5 flex items-center justify-between gap-4">
+              <div className="p-4 rounded-[12px] bg-[#F8F7F7] border border-[#E5E7EB] flex items-center justify-between gap-4">
                 <div>
                   <span className="text-xs font-bold text-[#111111] block">
                     "Powered by Open Hours" Footer Badge
@@ -1975,7 +1975,7 @@ export const PartnerPortalView: React.FC<PartnerPortalViewProps> = ({
         {/* Portal Footer */}
         {data.partner.poweredByOpenHours && (
           <footer className="mt-auto border-t border-black/5 py-6 px-6 text-center">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-black/5 text-[11px] font-semibold text-[#6B6B6B] shadow-2xs">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-[#E5E7EB] text-[11px] font-semibold text-[#6B6B6B] shadow-2xs">
               <LogoMark size={14} />
               <span>Powered by Open Hours</span>
             </div>
@@ -2025,7 +2025,7 @@ export const PartnerPortalView: React.FC<PartnerPortalViewProps> = ({
         {/* Lost Reason Modal */}
         {lostReasonModalOpen && lostProposalTarget && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-xs">
-            <div className="bg-white rounded-3xl max-w-md w-full p-6 space-y-4 border border-black/10 shadow-2xl animate-in fade-in duration-150">
+            <div className="bg-white rounded-[12px] max-w-md w-full p-6 space-y-4 border border-black/10 shadow-2xl animate-in fade-in duration-150">
               <div>
                 <span className="text-[10px] font-bold uppercase tracking-wider text-[#A8A5A5] block">
                   Proposal Status
@@ -2040,7 +2040,7 @@ export const PartnerPortalView: React.FC<PartnerPortalViewProps> = ({
                 value={lostReasonText}
                 onChange={(e) => setLostReasonText(e.target.value)}
                 placeholder="Optional reason (e.g. Budget constraints, chose internal team, postponed)..."
-                className="w-full text-xs p-3 rounded-2xl border border-black/10 focus:outline-none focus:ring-1 focus:ring-black"
+                className="w-full text-xs p-3 rounded-[12px] border border-black/10 focus:outline-none focus:ring-1 focus:ring-black"
               />
               <div className="flex items-center justify-end gap-2 pt-2">
                 <button
@@ -2057,7 +2057,7 @@ export const PartnerPortalView: React.FC<PartnerPortalViewProps> = ({
                 <button
                   type="button"
                   onClick={handleProposalLost}
-                  className="px-4 py-2 text-xs font-bold bg-[#D92D50] hover:bg-[#C42447] text-white rounded-full cursor-pointer shadow-xs"
+                  className="px-4 py-2 text-xs font-bold bg-[var(--accent)] hover:opacity-90 text-white rounded-[8px] cursor-pointer shadow-xs"
                 >
                   Confirm Lost
                 </button>
@@ -2068,7 +2068,7 @@ export const PartnerPortalView: React.FC<PartnerPortalViewProps> = ({
         {/* Outcome Tracking Modal */}
         {outcomeModalClient && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-xs">
-            <div className="bg-white rounded-3xl max-w-md w-full p-6 space-y-4 border border-black/10 shadow-2xl animate-in fade-in duration-150">
+            <div className="bg-white rounded-[12px] max-w-md w-full p-6 space-y-4 border border-black/10 shadow-2xl animate-in fade-in duration-150">
               <div className="flex items-center justify-between">
                 <div>
                   <span className="text-[10px] font-bold uppercase tracking-wider text-[#A8A5A5] block">
@@ -2130,7 +2130,7 @@ export const PartnerPortalView: React.FC<PartnerPortalViewProps> = ({
 
               {/* Agreed Context Notice */}
               {outcomeSelectedStatus === 'Agreed' && (
-                <div className="p-3 rounded-2xl bg-emerald-50 border border-emerald-200 text-[11px] text-emerald-900 leading-relaxed">
+                <div className="p-3 rounded-[12px] bg-emerald-50 border border-emerald-200 text-[11px] text-emerald-900 leading-relaxed">
                   <strong>Notice:</strong> Marking "Agreed" creates a priority task for the account manager to finalize onboarding. It does not create revenue or client billing; payments remain the single source of truth.
                 </div>
               )}
@@ -2214,7 +2214,7 @@ export const PartnerPortalView: React.FC<PartnerPortalViewProps> = ({
               </div>
 
               {/* Middle Device Controls */}
-              <div className="flex items-center gap-1 bg-[#F2F4F7] p-1 rounded-full border border-black/5">
+              <div className="flex items-center gap-1 bg-[#F2F4F7] p-1 rounded-full border border-[#E5E7EB]">
                 <button
                   type="button"
                   onClick={() => setDemoDevice('desktop')}
@@ -2309,7 +2309,7 @@ export const PartnerPortalView: React.FC<PartnerPortalViewProps> = ({
                 </div>
               ) : (
                 <div
-                  className={`bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col transition-all duration-300 border border-white/20 h-full max-h-[88vh] ${
+                  className={`bg-white rounded-[12px] shadow-2xl overflow-hidden flex flex-col transition-all duration-300 border border-white/20 h-full max-h-[88vh] ${
                     demoDevice === 'desktop'
                       ? 'w-full max-w-6xl'
                       : demoDevice === 'tablet'

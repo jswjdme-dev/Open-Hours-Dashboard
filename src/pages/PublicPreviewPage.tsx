@@ -116,7 +116,7 @@ export const PublicPreviewPage: React.FC<PublicPreviewPageProps> = ({ token }) =
   // Loading state
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#F3F3F5] flex flex-col items-center justify-center p-6 text-center">
+      <div className="min-h-screen bg-[#F3F4F6] flex flex-col items-center justify-center p-6 text-center">
         <div className="w-10 h-10 border-2 border-black/15 border-t-[#0A0A0A] rounded-full animate-spin mb-4" />
         <h2 className="text-sm font-semibold text-[#0A0A0A]">Loading website preview...</h2>
         <p className="text-xs text-[#6B6B6B] mt-1">Preparing your private interactive concept</p>
@@ -131,8 +131,8 @@ export const PublicPreviewPage: React.FC<PublicPreviewPageProps> = ({ token }) =
       previewData.websiteUrl && previewData.websiteUrl.startsWith('https://');
 
     return (
-      <div className="min-h-screen bg-[#F3F3F5] flex flex-col items-center justify-center p-6 text-center">
-        <div className="max-w-md w-full bg-white rounded-3xl p-8 border border-[#E3E3E6] shadow-sm space-y-5">
+      <div className="min-h-screen bg-[#F3F4F6] flex flex-col items-center justify-center p-6 text-center">
+        <div className="max-w-md w-full bg-white rounded-[12px] p-8 border border-[#E5E7EB] shadow-sm space-y-5">
           <div className="w-12 h-12 rounded-2xl bg-amber-50 text-amber-700 flex items-center justify-center mx-auto border border-amber-200">
             <AlertCircle size={24} />
           </div>
@@ -167,8 +167,8 @@ export const PublicPreviewPage: React.FC<PublicPreviewPageProps> = ({ token }) =
   // NOT FOUND ON THIS DEVICE STATE
   if (previewData?.notFound) {
     return (
-      <div className="min-h-screen bg-[#F3F3F5] flex flex-col items-center justify-center p-6 text-center">
-        <div className="max-w-md w-full bg-white rounded-3xl p-8 border border-[#E3E3E6] shadow-sm space-y-4">
+      <div className="min-h-screen bg-[#F3F4F6] flex flex-col items-center justify-center p-6 text-center">
+        <div className="max-w-md w-full bg-white rounded-[12px] p-8 border border-[#E5E7EB] shadow-sm space-y-4">
           <div className="w-12 h-12 rounded-2xl bg-black/5 text-[#0A0A0A] flex items-center justify-center mx-auto">
             <AlertCircle size={24} />
           </div>
@@ -179,7 +179,7 @@ export const PublicPreviewPage: React.FC<PublicPreviewPageProps> = ({ token }) =
           <div className="pt-2">
             <a
               href="/apply?source=not_found"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#0A0A0A] text-white text-xs font-semibold hover:bg-[#D92D50] transition-all shadow-sm"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#0A0A0A] text-white text-xs font-semibold hover:bg-[#1F5FA8] transition-all shadow-sm"
             >
               <span>Start your project</span>
               <ArrowRight size={14} />
@@ -193,8 +193,8 @@ export const PublicPreviewPage: React.FC<PublicPreviewPageProps> = ({ token }) =
   // REVOKED STATE
   if (previewData?.isRevoked) {
     return (
-      <div className="min-h-screen bg-[#F3F3F5] flex flex-col items-center justify-center p-6 text-center">
-        <div className="max-w-md w-full bg-white rounded-3xl p-8 border border-[#E3E3E6] shadow-sm space-y-4">
+      <div className="min-h-screen bg-[#F3F4F6] flex flex-col items-center justify-center p-6 text-center">
+        <div className="max-w-md w-full bg-white rounded-[12px] p-8 border border-[#E5E7EB] shadow-sm space-y-4">
           <div className="w-12 h-12 rounded-2xl bg-rose-50 text-rose-700 flex items-center justify-center mx-auto border border-rose-200">
             <AlertCircle size={24} />
           </div>
@@ -205,7 +205,7 @@ export const PublicPreviewPage: React.FC<PublicPreviewPageProps> = ({ token }) =
           <div className="pt-2">
             <a
               href="/apply?source=revoked"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#0A0A0A] text-white text-xs font-semibold hover:bg-[#D92D50] transition-all shadow-sm"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#0A0A0A] text-white text-xs font-semibold hover:bg-[#1F5FA8] transition-all shadow-sm"
             >
               <span>Start your project</span>
               <ArrowRight size={14} />
@@ -219,8 +219,8 @@ export const PublicPreviewPage: React.FC<PublicPreviewPageProps> = ({ token }) =
   // NOT SHARED STATE
   if (previewData?.notShared || !previewData?.renderedHtml) {
     return (
-      <div className="min-h-screen bg-[#F3F3F5] flex flex-col items-center justify-center p-6 text-center">
-        <div className="max-w-md w-full bg-white rounded-3xl p-8 border border-[#E3E3E6] shadow-sm space-y-4">
+      <div className="min-h-screen bg-[#F3F4F6] flex flex-col items-center justify-center p-6 text-center">
+        <div className="max-w-md w-full bg-white rounded-[12px] p-8 border border-[#E5E7EB] shadow-sm space-y-4">
           <div className="w-12 h-12 rounded-2xl bg-black/5 text-[#0A0A0A] flex items-center justify-center mx-auto">
             <AlertCircle size={24} />
           </div>
@@ -231,7 +231,7 @@ export const PublicPreviewPage: React.FC<PublicPreviewPageProps> = ({ token }) =
           <div className="pt-2">
             <a
               href="/apply?source=not_shared"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#0A0A0A] text-white text-xs font-semibold hover:bg-[#D92D50] transition-all shadow-sm"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#0A0A0A] text-white text-xs font-semibold hover:bg-[#1F5FA8] transition-all shadow-sm"
             >
               <span>Start your project</span>
               <ArrowRight size={14} />
@@ -243,7 +243,7 @@ export const PublicPreviewPage: React.FC<PublicPreviewPageProps> = ({ token }) =
   }
 
   return (
-    <div className="min-h-screen bg-[#F3F3F5] flex flex-col text-[#0A0A0A] relative">
+    <div className="min-h-screen bg-[#F3F4F6] flex flex-col text-[#0A0A0A] relative">
       {/* NEW CSS REVEAL ANIMATION OVERLAY */}
       {showReveal && (
         <RevealSequenceOverlay
@@ -325,7 +325,7 @@ export const PublicPreviewPage: React.FC<PublicPreviewPageProps> = ({ token }) =
         <div>
           <a
             href="/apply?source=reveal"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#0A0A0A] text-white text-xs font-semibold hover:bg-[#D92D50] shadow-xs hover:shadow-md transition-all cursor-pointer"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#0A0A0A] text-white text-xs font-semibold hover:bg-[#1F5FA8] shadow-xs hover:shadow-md transition-all cursor-pointer"
           >
             <span>Start your project</span>
             <ArrowRight size={14} />
@@ -340,7 +340,7 @@ export const PublicPreviewPage: React.FC<PublicPreviewPageProps> = ({ token }) =
         className="flex-1 p-3 sm:p-6 flex items-center justify-center overflow-auto focus:outline-none"
       >
         <div
-          className={`bg-white rounded-3xl shadow-sm overflow-hidden transition-all duration-300 border border-[#E3E3E6] flex flex-col ${
+          className={`bg-white rounded-[12px] shadow-sm overflow-hidden transition-all duration-300 border border-[#E5E7EB] flex flex-col ${
             devicePreset === 'desktop'
               ? 'w-full max-w-7xl h-[calc(100vh-110px)] min-h-[580px]'
               : devicePreset === 'tablet'

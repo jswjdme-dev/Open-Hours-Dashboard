@@ -431,7 +431,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
     return (
       <div className="min-h-screen bg-[#FAFAFA] flex items-center justify-center p-6">
         <div className="flex flex-col items-center gap-3">
-          <div className="w-8 h-8 rounded-full border-2 border-[#D92D50] border-t-transparent animate-spin" />
+          <div className="w-8 h-8 rounded-full border-2 border-[var(--accent)] border-t-transparent animate-spin" />
           <span className="text-xs font-semibold text-[#6B6B6B]">
             Opening client portal...
           </span>
@@ -513,7 +513,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
 
   return (
     <PortalThemeProvider theme={theme}>
-      <div className="min-h-screen bg-[#FAFAFA] text-[#111111] font-sans antialiased flex flex-col">
+      <div className="min-h-screen bg-[#F3F4F6] text-[#111827] font-sans antialiased flex flex-col" style={{ "--accent": theme.accentColor || "#1F5FA8" } as React.CSSProperties}>
         {/* 1. STICKY TOP PREVIEW BANNER (Admin preview only) */}
         {isPreview && (
           <aside
@@ -533,7 +533,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
             <button
               type="button"
               onClick={onExitPreview}
-              className="px-3 py-1 rounded-full bg-[#D92D50] hover:bg-[#b0223f] text-white text-[11px] font-bold transition-colors cursor-pointer flex items-center gap-1.5 shadow-2xs"
+              className="px-3 py-1 rounded-[8px] bg-[var(--accent)] hover:opacity-90 text-white text-[11px] font-semibold transition-colors cursor-pointer flex items-center gap-1.5 shadow-2xs"
             >
               <ArrowLeft size={12} />
               <span>Exit Preview</span>
@@ -542,10 +542,10 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
         )}
 
         {/* 2. STICKY TOP BRAND BAR */}
-        <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-black/5 px-6 py-3.5 flex items-center justify-between">
+        <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-[#E5E7EB] px-6 py-3.5 flex items-center justify-between">
           {/* Left: Client Business Name */}
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-xl bg-[#F8F7F7] border border-black/5 flex items-center justify-center font-bold text-xs text-[#111111]">
+            <div className="w-8 h-8 rounded-xl bg-[#F8F7F7] border border-[#E5E7EB] flex items-center justify-center font-bold text-xs text-[#111111]">
               <Building size={15} />
             </div>
             <div>
@@ -584,7 +584,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
             <button
               type="button"
               onClick={() => setActiveTab('files_support')}
-              className="text-xs font-semibold text-[#6B6B6B] hover:text-[#D92D50] transition-colors cursor-pointer flex items-center gap-1"
+              className="text-xs font-semibold text-[#6B6B6B] hover:text-[var(--accent)] transition-colors cursor-pointer flex items-center gap-1"
             >
               <HelpCircle size={14} />
               <span>Need help?</span>
@@ -597,7 +597,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
                 className="h-[32px] px-3 rounded-[8px] bg-white border border-[#D0D5DD] hover:bg-[#F2F4F7] text-[#344054] text-xs font-semibold flex items-center gap-1.5 transition-colors cursor-pointer shadow-2xs"
                 title="Sign out of client portal"
               >
-                <LogOut size={12} className="text-[#D92D50]" />
+                <LogOut size={12} className="text-[#6B7280]" />
                 <span>Sign Out</span>
               </button>
             )}
@@ -607,15 +607,15 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
       {/* 3. TOP NAVIGATION (MAX 5 TABS - HIDE IF ALL FEATURES IN TAB ARE OFF) */}
       <nav
         aria-label="Client portal primary navigation"
-        className="bg-white border-b border-black/5 px-6 flex items-center justify-center sm:justify-start gap-1 sm:gap-2 overflow-x-auto"
+        className="bg-white border-b border-[#E5E7EB] px-6 flex items-center justify-center sm:justify-start gap-1 sm:gap-2 overflow-x-auto"
       >
         <button
           type="button"
           onClick={() => setActiveTab('home')}
           className={`py-3 px-3.5 text-xs font-bold border-b-2 transition-all cursor-pointer whitespace-nowrap ${
             activeTab === 'home'
-              ? 'border-[#D92D50] text-[#D92D50]'
-              : 'border-transparent text-[#6B6B6B] hover:text-[#111111]'
+              ? 'border-[var(--accent)] text-[var(--accent)] font-semibold'
+              : 'border-transparent text-[#6B7280] hover:text-[#111827]'
           }`}
         >
           Home
@@ -627,8 +627,8 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
             onClick={() => setActiveTab('progress')}
             className={`py-3 px-3.5 text-xs font-bold border-b-2 transition-all cursor-pointer whitespace-nowrap ${
               activeTab === 'progress'
-                ? 'border-[#D92D50] text-[#D92D50]'
-                : 'border-transparent text-[#6B6B6B] hover:text-[#111111]'
+                ? 'border-[var(--accent)] text-[var(--accent)] font-semibold'
+                : 'border-transparent text-[#6B7280] hover:text-[#111827]'
             }`}
           >
             Progress
@@ -641,13 +641,13 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
             onClick={() => setActiveTab('actions')}
             className={`py-3 px-3.5 text-xs font-bold border-b-2 transition-all cursor-pointer whitespace-nowrap flex items-center gap-1.5 ${
               activeTab === 'actions'
-                ? 'border-[#D92D50] text-[#D92D50]'
-                : 'border-transparent text-[#6B6B6B] hover:text-[#111111]'
+                ? 'border-[var(--accent)] text-[var(--accent)] font-semibold'
+                : 'border-transparent text-[#6B7280] hover:text-[#111827]'
             }`}
           >
             <span>Action Items</span>
             {attentionItems.length > 0 && (
-              <span className="w-4 h-4 rounded-full bg-[#D92D50] text-white text-[10px] font-bold flex items-center justify-center">
+              <span className="w-4 h-4 rounded-full bg-[var(--accent)] text-white text-[10px] font-bold flex items-center justify-center">
                 {attentionItems.length}
               </span>
             )}
@@ -660,8 +660,8 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
             onClick={() => setActiveTab('reports')}
             className={`py-3 px-3.5 text-xs font-bold border-b-2 transition-all cursor-pointer whitespace-nowrap ${
               activeTab === 'reports'
-                ? 'border-[#D92D50] text-[#D92D50]'
-                : 'border-transparent text-[#6B6B6B] hover:text-[#111111]'
+                ? 'border-[var(--accent)] text-[var(--accent)] font-semibold'
+                : 'border-transparent text-[#6B7280] hover:text-[#111827]'
             }`}
           >
             Reports
@@ -674,8 +674,8 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
             onClick={() => setActiveTab('files_support')}
             className={`py-3 px-3.5 text-xs font-bold border-b-2 transition-all cursor-pointer whitespace-nowrap ${
               activeTab === 'files_support'
-                ? 'border-[#D92D50] text-[#D92D50]'
-                : 'border-transparent text-[#6B6B6B] hover:text-[#111111]'
+                ? 'border-[var(--accent)] text-[var(--accent)] font-semibold'
+                : 'border-transparent text-[#6B7280] hover:text-[#111827]'
             }`}
           >
             Files & Support
@@ -692,7 +692,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
           <div className="space-y-6">
             {/* 0. WELCOME MOMENT (First portal visit only, CSS-only confetti burst, dismissible) */}
             {!client.welcomeMomentDismissed && !welcomeDismissedLocal && (
-              <div className="relative overflow-hidden bg-gradient-to-br from-[#111111] via-[#1a1a1a] to-[#262626] text-white rounded-[28px] p-6 sm:p-8 shadow-md border border-black/10">
+              <div className="relative overflow-hidden bg-gradient-to-br from-[#111111] via-[#1a1a1a] to-[#262626] text-white rounded-[12px] p-6 sm:p-8 shadow-md border border-black/10">
                 {/* CSS Confetti Burst (max 2 seconds, disabled when prefers-reduced-motion) */}
                 <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
                   {[...Array(24)].map((_, i) => {
@@ -721,7 +721,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
                 <div className="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                   <div className="space-y-1.5 max-w-xl">
                     <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-white text-[11px] font-bold">
-                      <Sparkles size={13} className="text-[#D92D50]" />
+                      <Sparkles size={13} className="text-[var(--accent)]" />
                       <span>Welcome to your client portal</span>
                     </div>
                     <h2 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
@@ -735,7 +735,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
                   <button
                     type="button"
                     onClick={handleDismissWelcomeMoment}
-                    className="px-5 py-2.5 rounded-full bg-[#D92D50] hover:bg-[#b0223f] text-white text-xs font-bold transition-all shadow-xs cursor-pointer shrink-0 self-start sm:self-center"
+                    className="px-5 py-2.5 rounded-[8px] bg-[var(--accent)] hover:opacity-90 text-white text-xs font-semibold transition-all shadow-xs cursor-pointer shrink-0 self-start sm:self-center"
                   >
                     Get started
                   </button>
@@ -748,7 +748,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
               <div>
                 {data.onboardingChecklist.isAllDone && !checklistExpanded ? (
                   /* Collapsed 100% "All set" line */
-                  <div className="bg-white rounded-2xl p-4 border border-black/5 shadow-2xs flex items-center justify-between transition-all">
+                  <div className="bg-white rounded-2xl p-4 border border-[#E5E7EB] shadow-2xs flex items-center justify-between transition-all">
                     <div className="flex items-center gap-2.5 text-xs text-emerald-800 font-bold">
                       <CheckCircle2 size={16} className="text-emerald-600" />
                       <span>All set. All onboarding steps completed.</span>
@@ -763,10 +763,10 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
                   </div>
                 ) : (
                   /* Full Onboarding Checklist Card */
-                  <div className="bg-white rounded-[28px] p-6 sm:p-8 border border-black/5 shadow-xs space-y-5">
+                  <div className="bg-white rounded-[12px] p-6 sm:p-8 border border-[#E5E7EB] shadow-xs space-y-5">
                     <div className="flex items-center justify-between flex-wrap gap-3 pb-3 border-b border-black/5">
                       <div>
-                        <span className="text-[11px] font-bold uppercase tracking-wider text-[#D92D50]">
+                        <span className="text-[11px] font-bold uppercase tracking-wider text-[var(--accent)]">
                           Onboarding Checklist
                         </span>
                         <h2 className="text-lg font-bold text-[#111111] mt-0.5">
@@ -794,7 +794,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
                     <div className="space-y-1.5">
                       <div className="w-full bg-[#F1EFEF] h-2.5 rounded-full overflow-hidden">
                         <div
-                          className="bg-[#D92D50] h-full rounded-full transition-all duration-500"
+                          className="bg-[var(--accent)] h-full rounded-full transition-all duration-500"
                           style={{
                             width: `${(data.onboardingChecklist.doneCount / Math.max(1, data.onboardingChecklist.totalCount)) * 100}%`,
                           }}
@@ -804,11 +804,11 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
 
                     {/* Primary Next Action Highlight */}
                     {data.onboardingChecklist.primaryNextAction && (
-                      <div className="p-4 rounded-2xl bg-[#FCE9ED]/30 border border-[#D92D50]/20 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                      <div className="p-4 rounded-2xl bg-blue-50/30 border border-[var(--accent)]/20 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                         <div className="flex items-start sm:items-center gap-2.5">
                           <span className="w-2 h-2 rounded-full bg-[#D92D50] animate-pulse mt-1 sm:mt-0" />
                           <div>
-                            <span className="text-[11px] font-bold uppercase tracking-wider text-[#D92D50] block sm:inline mr-2">
+                            <span className="text-[11px] font-bold uppercase tracking-wider text-[var(--accent)] block sm:inline mr-2">
                               Next Step:
                             </span>
                             <span className="text-xs font-bold text-[#111111]">
@@ -834,7 +834,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
                               setActiveTab('home');
                             }
                           }}
-                          className="px-4 py-1.5 rounded-full bg-[#D92D50] hover:bg-[#b0223f] text-white text-xs font-bold transition-all shadow-2xs cursor-pointer self-start sm:self-auto shrink-0 flex items-center gap-1.5"
+                          className="px-4 py-1.5 rounded-[8px] bg-[var(--accent)] hover:opacity-90 text-white text-xs font-semibold transition-all shadow-2xs cursor-pointer self-start sm:self-auto shrink-0 flex items-center gap-1.5"
                         >
                           <span>Complete this step</span>
                           <ChevronRight size={13} />
@@ -897,7 +897,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
                                     setActiveTab('home');
                                   }
                                 }}
-                                className="text-xs font-bold text-[#D92D50] hover:underline flex items-center gap-1 cursor-pointer"
+                                className="text-xs font-semibold text-[var(--accent)] hover:underline flex items-center gap-1 cursor-pointer"
                               >
                                 <span>Open</span>
                                 <ChevronRight size={13} />
@@ -913,10 +913,10 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
             )}
 
             {/* 2. COMPACT FOUR-STEP PROGRESS TRACKER (HOME) */}
-            <div className="bg-white rounded-[28px] p-6 sm:p-8 border border-black/5 shadow-xs space-y-5">
+            <div className="bg-white rounded-[12px] p-6 sm:p-8 border border-[#E5E7EB] shadow-xs space-y-5">
               <div className="flex items-center justify-between flex-wrap gap-2">
                 <div>
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-[#D92D50]">
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-[var(--accent)]">
                     Milestone Progress
                   </span>
                   <h3 className="text-base font-bold text-[#111111] mt-0.5">
@@ -954,7 +954,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
                       m.status === 'done'
                         ? 'bg-emerald-50/50 border-emerald-200 text-emerald-900'
                         : m.status === 'in_progress'
-                        ? 'bg-[#FCE9ED]/40 border-[#D92D50] text-[#111111] ring-1 ring-[#D92D50]/50'
+                        ? 'bg-blue-50/40 border-[var(--accent)] text-[#111111] ring-1 ring-[var(--accent)]/50'
                         : 'bg-[#FAFAFA] border-black/5 text-[#A8A5A5]'
                     }`}
                   >
@@ -984,7 +984,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
                 <button
                   type="button"
                   onClick={() => setActiveTab('progress')}
-                  className="text-xs font-bold text-[#D92D50] hover:underline flex items-center gap-1 cursor-pointer"
+                  className="text-xs font-semibold text-[var(--accent)] hover:underline flex items-center gap-1 cursor-pointer"
                 >
                   <span>View full milestone details and design preview</span>
                   <ChevronRight size={14} />
@@ -994,7 +994,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
 
             {/* "Needs Your Attention" (Max 3 items, link to Action Items) */}
             {attentionItems.length > 0 && (
-              <div className="bg-white rounded-[28px] p-6 border border-black/5 shadow-xs space-y-4">
+              <div className="bg-white rounded-[12px] p-6 border border-[#E5E7EB] shadow-xs space-y-4">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <AlertTriangle size={16} className="text-[#D92D50]" />
@@ -1006,7 +1006,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
                   <button
                     type="button"
                     onClick={() => setActiveTab('actions')}
-                    className="text-xs font-bold text-[#D92D50] hover:underline cursor-pointer"
+                    className="text-xs font-semibold text-[var(--accent)] hover:underline cursor-pointer"
                   >
                     View all action items
                   </button>
@@ -1020,7 +1020,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
                         setSelectedRequest(item);
                         setActiveTab('actions');
                       }}
-                      className="p-4 rounded-2xl bg-[#FAFAFA] border border-black/5 hover:border-[#D92D50]/40 transition-all cursor-pointer flex flex-col justify-between group"
+                      className="p-4 rounded-[12px] bg-[#F9FAFB] border border-[#E5E7EB] hover:border-[var(--accent)]/40 transition-all cursor-pointer flex flex-col justify-between group"
                     >
                       <div>
                         <div className="flex items-center justify-between mb-1.5">
@@ -1029,7 +1029,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
                           </span>
                           <span className="text-[10px] text-[#A8A5A5]">Due {item.deadline}</span>
                         </div>
-                        <h3 className="text-xs font-bold text-[#111111] group-hover:text-[#D92D50] transition-colors line-clamp-1">
+                        <h3 className="text-xs font-bold text-[#111111] group-hover:text-[var(--accent)] transition-colors line-clamp-1">
                           {item.title}
                         </h3>
                         <p className="text-[11px] text-[#6B6B6B] mt-1 line-clamp-2">
@@ -1037,7 +1037,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
                         </p>
                       </div>
 
-                      <div className="pt-3 flex items-center text-xs font-bold text-[#D92D50]">
+                      <div className="pt-3 flex items-center text-xs font-bold text-[var(--accent)]">
                         <span>Answer request</span>
                         <ChevronRight size={13} />
                       </div>
@@ -1048,7 +1048,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
             )}
 
             {/* "This Month" Snapshot (3 numbers from latest published report) */}
-            <div className="bg-white rounded-[28px] p-6 border border-black/5 shadow-xs space-y-4">
+            <div className="bg-white rounded-[12px] p-6 border border-[#E5E7EB] shadow-xs space-y-4">
               <div className="flex items-center justify-between">
                 <div>
                   <span className="text-[10px] font-bold uppercase tracking-wider text-[#A8A5A5]">
@@ -1062,7 +1062,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
                 <button
                   type="button"
                   onClick={() => setActiveTab('reports')}
-                  className="text-xs font-bold text-[#D92D50] hover:underline cursor-pointer"
+                  className="text-xs font-semibold text-[var(--accent)] hover:underline cursor-pointer"
                 >
                   View full report
                 </button>
@@ -1070,7 +1070,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
 
               {currentReport ? (
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-1">
-                  <div className="p-4 rounded-2xl bg-[#FAFAFA] border border-black/5">
+                  <div className="p-4 rounded-[12px] bg-[#F9FAFB] border border-[#E5E7EB]">
                     <span className="text-xs text-[#A8A5A5] font-semibold block mb-1">
                       Website Visitors
                     </span>
@@ -1082,7 +1082,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
                     </span>
                   </div>
 
-                  <div className="p-4 rounded-2xl bg-[#FAFAFA] border border-black/5">
+                  <div className="p-4 rounded-[12px] bg-[#F9FAFB] border border-[#E5E7EB]">
                     <span className="text-xs text-[#A8A5A5] font-semibold block mb-1">
                       Enquiries Received
                     </span>
@@ -1094,7 +1094,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
                     </span>
                   </div>
 
-                  <div className="p-4 rounded-2xl bg-[#FAFAFA] border border-black/5">
+                  <div className="p-4 rounded-[12px] bg-[#F9FAFB] border border-[#E5E7EB]">
                     <span className="text-xs text-[#A8A5A5] font-semibold block mb-1">
                       Google Maps Profile Views
                     </span>
@@ -1107,7 +1107,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
                   </div>
                 </div>
               ) : (
-                <div className="p-8 text-center text-xs text-[#6B6B6B] rounded-2xl bg-[#FAFAFA] border border-black/5">
+                <div className="p-8 text-center text-xs text-[#6B6B6B] rounded-[12px] bg-[#F9FAFB] border border-[#E5E7EB]">
                   Your first performance report arrives on {client.nextReportDue || 'the scheduled report date'}.
                 </div>
               )}
@@ -1115,13 +1115,13 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
 
             {/* Next Meeting Card */}
             {meetings.length > 0 && (
-              <div className="bg-white rounded-[28px] p-6 border border-black/5 shadow-xs flex items-center justify-between flex-wrap gap-4">
+              <div className="bg-white rounded-[12px] p-6 border border-[#E5E7EB] shadow-xs flex items-center justify-between flex-wrap gap-4">
                 <div className="flex items-center gap-3.5">
-                  <div className="w-10 h-10 rounded-2xl bg-[#F8F7F7] border border-black/5 flex items-center justify-center text-[#111111]">
+                  <div className="w-10 h-10 rounded-2xl bg-[#F8F7F7] border border-[#E5E7EB] flex items-center justify-center text-[#111111]">
                     <Calendar size={18} />
                   </div>
                   <div>
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#D92D50]">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-[var(--accent)]">
                       Upcoming Review
                     </span>
                     <h3 className="text-sm font-bold text-[#111111]">
@@ -1139,7 +1139,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
                     href={meetings[0].link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-4 py-2 rounded-full bg-[#111111] hover:bg-[#D92D50] text-white text-xs font-bold transition-colors shadow-2xs"
+                    className="px-4 py-2 rounded-full bg-[var(--accent)] hover:opacity-90 text-white text-xs font-bold transition-colors shadow-2xs"
                   >
                     Join Video Call
                   </a>
@@ -1149,13 +1149,13 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
 
             {/* Booking Card */}
             {data.bookingLink && (
-              <div className="bg-white rounded-[28px] p-6 border border-black/5 shadow-xs flex items-center justify-between flex-wrap gap-4">
+              <div className="bg-white rounded-[12px] p-6 border border-[#E5E7EB] shadow-xs flex items-center justify-between flex-wrap gap-4">
                 <div className="flex items-center gap-3.5">
-                  <div className="w-10 h-10 rounded-2xl bg-[#F8F7F7] border border-black/5 flex items-center justify-center text-[#111111]">
+                  <div className="w-10 h-10 rounded-2xl bg-[#F8F7F7] border border-[#E5E7EB] flex items-center justify-center text-[#111111]">
                     <Calendar size={18} />
                   </div>
                   <div>
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#D92D50]">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-[var(--accent)]">
                       Direct Scheduling
                     </span>
                     <h3 className="text-sm font-bold text-[#111111]">
@@ -1171,7 +1171,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
                   href={data.bookingLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#111111] hover:bg-[#D92D50] text-white text-xs font-bold transition-colors shadow-2xs"
+                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[var(--accent)] hover:opacity-90 text-white text-xs font-bold transition-colors shadow-2xs"
                 >
                   <span>Book a meeting</span>
                   <ExternalLink size={12} />
@@ -1181,7 +1181,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
 
             {/* Share with a friend (Referral Programme) */}
             {data.referral?.enabled && (
-              <div className="bg-white rounded-[28px] p-6 sm:p-7 border border-black/5 shadow-xs space-y-5">
+              <div className="bg-white rounded-[12px] p-6 sm:p-7 border border-[#E5E7EB] shadow-xs space-y-5">
                 {/* Friend reward received banner */}
                 {data.referral.receivedFreeMonthsText && (
                   <div className="p-3.5 rounded-2xl bg-emerald-50 border border-emerald-200/60 flex items-center gap-3 text-xs text-emerald-900 font-medium">
@@ -1193,7 +1193,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-black/5">
                   <div className="space-y-1">
                     <div className="flex items-center gap-2">
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-[#D92D50] bg-[#FCE9ED] px-2.5 py-0.5 rounded-full">
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-[var(--accent)] bg-blue-50 px-2.5 py-0.5 rounded-full">
                         Referral Programme
                       </span>
                       <span className="text-xs text-[#6B6B6B] font-mono font-medium">
@@ -1286,33 +1286,33 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
                     Your referral activity
                   </div>
                   <div className="grid grid-cols-2 sm:grid-cols-5 gap-2.5">
-                    <div className="p-3 rounded-2xl bg-[#FAFAFA] border border-black/5 text-center">
+                    <div className="p-3 rounded-[12px] bg-[#F9FAFB] border border-[#E5E7EB] text-center">
                       <span className="text-[10px] text-[#6B6B6B] block mb-1">Waiting</span>
                       <span className="text-lg font-bold text-[#111111] tabular-nums">
                         {data.referral.counts.waiting ?? 0}
                       </span>
                     </div>
-                    <div className="p-3 rounded-2xl bg-[#FAFAFA] border border-black/5 text-center">
+                    <div className="p-3 rounded-[12px] bg-[#F9FAFB] border border-[#E5E7EB] text-center">
                       <span className="text-[10px] text-[#6B6B6B] block mb-1">Approved</span>
                       <span className="text-lg font-bold text-[#111111] tabular-nums">
                         {data.referral.counts.approved ?? 0}
                       </span>
                     </div>
-                    <div className="p-3 rounded-2xl bg-[#FAFAFA] border border-black/5 text-center">
+                    <div className="p-3 rounded-[12px] bg-[#F9FAFB] border border-[#E5E7EB] text-center">
                       <span className="text-[10px] text-[#6B6B6B] block mb-1">Free months earned</span>
                       <span className="text-lg font-bold text-[#111111] tabular-nums">
                         {data.referral.counts.earnedMonths ?? 0}
                       </span>
                     </div>
-                    <div className="p-3 rounded-2xl bg-[#FAFAFA] border border-black/5 text-center">
+                    <div className="p-3 rounded-[12px] bg-[#F9FAFB] border border-[#E5E7EB] text-center">
                       <span className="text-[10px] text-[#6B6B6B] block mb-1">Used</span>
                       <span className="text-lg font-bold text-[#111111] tabular-nums">
                         {data.referral.counts.usedMonths ?? 0}
                       </span>
                     </div>
-                    <div className="p-3 rounded-2xl bg-[#FAFAFA] border border-black/5 text-center">
+                    <div className="p-3 rounded-[12px] bg-[#F9FAFB] border border-[#E5E7EB] text-center">
                       <span className="text-[10px] text-[#6B6B6B] block mb-1">Remaining</span>
-                      <span className="text-lg font-bold text-[#D92D50] tabular-nums">
+                      <span className="text-lg font-bold text-[var(--accent)] tabular-nums">
                         {data.referral.counts.remainingMonths ?? 0}
                       </span>
                     </div>
@@ -1320,7 +1320,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
 
                   {/* Next reward computed from milestone rows */}
                   {data.referral.nextReward && (
-                    <div className="p-3 rounded-xl bg-[#F8F9FA] border border-black/5 text-xs text-[#111111] flex items-center justify-between">
+                    <div className="p-3 rounded-xl bg-[#F8F9FA] border border-[#E5E7EB] text-xs text-[#111111] flex items-center justify-between">
                       <span className="font-semibold text-[#6B6B6B]">Next reward:</span>
                       <span className="font-bold text-[#111111]">
                         {data.referral.nextReward.moreNeeded} more referral{data.referral.nextReward.moreNeeded === 1 ? '' : 's'} = {data.referral.nextReward.rewardMonths} months
@@ -1334,7 +1334,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
                       <div className="text-[11px] font-semibold text-[#6B6B6B] uppercase tracking-wider">
                         Recent referrals
                       </div>
-                      <div className="divide-y divide-black/5 rounded-xl border border-black/5 bg-[#FAFAFA] overflow-hidden">
+                      <div className="divide-y divide-black/5 rounded-xl border border-[#E5E7EB] bg-[#FAFAFA] overflow-hidden">
                         {data.referral.referralRows.map((row) => (
                           <div key={row.id} className="p-2.5 px-3 flex items-center justify-between text-xs">
                             <div className="flex items-center gap-2">
@@ -1370,7 +1370,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
                 {/* Explainer Modal */}
                 {showExplainerModal && data.referral.clientExplainer && (
                   <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4 overflow-y-auto">
-                    <div className="bg-white rounded-3xl max-w-2xl w-full p-6 sm:p-8 space-y-6 shadow-2xl border border-black/10 my-8">
+                    <div className="bg-white rounded-[12px] max-w-2xl w-full p-6 sm:p-8 space-y-6 shadow-2xl border border-black/10 my-8">
                       <div className="flex items-center justify-between pb-3 border-b border-black/10">
                         <div className="space-y-0.5">
                           <h4 className="text-lg font-bold text-[#111111]">
@@ -1433,8 +1433,8 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
 
               <div className="flex items-center gap-3">
                 {data.progressTracker.expectedLaunchDate && (
-                  <div className="px-4 py-1.5 rounded-full bg-white border border-black/5 text-xs font-semibold text-[#111111] shadow-2xs">
-                    Expected launch: <span className="font-bold text-[#D92D50]">{data.progressTracker.expectedLaunchDate}</span>
+                  <div className="px-4 py-1.5 rounded-full bg-white border border-[#E5E7EB] text-xs font-semibold text-[#111111] shadow-2xs">
+                    Expected launch: <span className="font-bold text-[var(--accent)]">{data.progressTracker.expectedLaunchDate}</span>
                   </div>
                 )}
                 <span
@@ -1450,10 +1450,10 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
             </div>
 
             {/* Calm Card: Your website preview */}
-            <div className="bg-white rounded-[28px] p-6 sm:p-8 border border-black/5 shadow-xs space-y-5">
+            <div className="bg-white rounded-[12px] p-6 sm:p-8 border border-[#E5E7EB] shadow-xs space-y-5">
               <div className="flex items-center justify-between flex-wrap gap-3">
                 <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-xl bg-[#FCE9ED] text-[#D92D50] flex items-center justify-center">
+                  <div className="w-9 h-9 rounded-xl bg-blue-50 text-[var(--accent)] flex items-center justify-center">
                     <Monitor size={18} />
                   </div>
                   <div>
@@ -1484,7 +1484,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
                 </div>
 
                 {data?.websiteDemo && (
-                  <div className="flex items-center bg-[#F4F2F2] p-1 rounded-xl border border-black/5 gap-1">
+                  <div className="flex items-center bg-[#F4F2F2] p-1 rounded-xl border border-[#E5E7EB] gap-1">
                     <button
                       type="button"
                       onClick={() => setDemoDevice('desktop')}
@@ -1529,7 +1529,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
               </div>
 
               {!data?.websiteDemo && !data?.customWebsitePreview ? (
-                <div className="py-12 px-6 text-center bg-[#FAFAFA] rounded-2xl border border-black/5">
+                <div className="py-12 px-6 text-center bg-[#FAFAFA] rounded-2xl border border-[#E5E7EB]">
                   <div className="w-12 h-12 rounded-full bg-black/5 flex items-center justify-center mx-auto mb-3 text-[#6B6B6B]">
                     <Monitor size={22} />
                   </div>
@@ -1585,7 +1585,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
                   </div>
 
                   {/* Sandboxed External Iframe (Strict sandbox: NO allow-same-origin) */}
-                  <div className="flex flex-col items-center justify-center bg-[#F6F7F9] p-3 rounded-2xl border border-black/5 overflow-hidden">
+                  <div className="flex flex-col items-center justify-center bg-[#F6F7F9] p-3 rounded-2xl border border-[#E5E7EB] overflow-hidden">
                     <div
                       className="bg-white rounded-xl shadow-xs overflow-hidden border border-black/10 transition-all duration-200 w-full flex flex-col"
                       style={{
@@ -1613,7 +1613,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
                   </div>
 
                   {/* What Changed in this Version (Changelog) */}
-                  <div className="p-4 bg-[#FAFAFC] rounded-2xl border border-black/5 space-y-2">
+                  <div className="p-4 bg-[#FAFAFC] rounded-2xl border border-[#E5E7EB] space-y-2">
                     <h4 className="text-xs font-bold text-[#111111]">
                       What changed in this version:
                     </h4>
@@ -1652,7 +1652,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
                         className={`px-5 py-2 rounded-full text-xs font-bold transition-all flex items-center gap-1.5 shadow-xs cursor-pointer ${
                           data.customWebsitePreview.currentVersion.status === 'Approved'
                             ? 'bg-emerald-600 text-white cursor-default'
-                            : 'bg-[#111111] hover:bg-[#D92D50] text-white'
+                            : 'bg-[var(--accent)] hover:opacity-90 text-white'
                         }`}
                       >
                         <CheckCircle2 size={14} />
@@ -1671,7 +1671,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
                       <button
                         type="button"
                         onClick={() => setShowPreviousVersions(!showPreviousVersions)}
-                        className="inline-flex items-center gap-1.5 text-xs font-bold text-[#111111] hover:text-[#D92D50] transition-colors cursor-pointer"
+                        className="inline-flex items-center gap-1.5 text-xs font-bold text-[#111111] hover:text-[var(--accent)] transition-colors cursor-pointer"
                       >
                         <ChevronDown
                           size={14}
@@ -1685,7 +1685,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
                           {data.customWebsitePreview.previousVersions.map((prev) => (
                             <div
                               key={prev.id}
-                              className="p-3 bg-[#FAFBFD] rounded-xl border border-black/5 text-xs space-y-1.5"
+                              className="p-3 bg-[#FAFBFD] rounded-xl border border-[#E5E7EB] text-xs space-y-1.5"
                             >
                               <div className="flex items-center justify-between flex-wrap gap-2">
                                 <div className="flex items-center gap-2">
@@ -1703,7 +1703,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
                                   <button
                                     type="button"
                                     onClick={() => setCustomWebsiteActivePreviewUrl(prev.previewUrl)}
-                                    className="text-[11px] font-semibold text-[#D92D50] hover:underline cursor-pointer"
+                                    className="text-[11px] font-semibold text-[var(--accent)] hover:underline cursor-pointer"
                                   >
                                     Load in preview
                                   </button>
@@ -1810,7 +1810,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
                         className={`px-5 py-2 rounded-full text-xs font-bold transition-all flex items-center gap-1.5 shadow-xs cursor-pointer ${
                           data.websiteDemo.status === 'Approved'
                             ? 'bg-emerald-600 text-white cursor-default'
-                            : 'bg-[#111111] hover:bg-[#D92D50] text-white'
+                            : 'bg-[var(--accent)] hover:opacity-90 text-white'
                         }`}
                       >
                         <CheckCircle2 size={14} />
@@ -1847,10 +1847,10 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
             </div>
 
             {/* Four-Step Progress Tracker Milestones */}
-            <div className="bg-white rounded-[28px] p-6 sm:p-8 border border-black/5 shadow-xs space-y-6">
+            <div className="bg-white rounded-[12px] p-6 sm:p-8 border border-[#E5E7EB] shadow-xs space-y-6">
               <div className="flex items-center justify-between flex-wrap gap-3 pb-3 border-b border-black/5">
                 <div>
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-[#D92D50]">
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-[var(--accent)]">
                     Milestone Roadmap
                   </span>
                   <h2 className="text-lg font-bold text-[#111111]">
@@ -1875,7 +1875,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
                       key={m.id}
                       className={`p-4 rounded-2xl border transition-all flex items-start justify-between gap-4 ${
                         isInProg
-                          ? 'border-[#D92D50] bg-[#FCE9ED]/20 ring-1 ring-[#D92D50]'
+                          ? 'border-[var(--accent)] bg-blue-50/20 ring-1 ring-[var(--accent)]'
                           : isDone
                           ? 'border-emerald-200 bg-emerald-50/40'
                           : 'border-black/5 bg-[#FAFAFA]'
@@ -1888,7 +1888,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
                               <Check size={14} />
                             </div>
                           ) : isInProg ? (
-                            <div className="w-6 h-6 rounded-full bg-[#D92D50] text-white flex items-center justify-center animate-pulse">
+                            <div className="w-6 h-6 rounded-full bg-[var(--accent)] text-white flex items-center justify-center animate-pulse">
                               <Clock size={13} />
                             </div>
                           ) : (
@@ -1917,7 +1917,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
                           isDone
                             ? 'bg-emerald-100 text-emerald-800'
                             : isInProg
-                            ? 'bg-[#FCE9ED] text-[#D92D50]'
+                            ? 'bg-blue-50 text-[var(--accent)]'
                             : 'bg-gray-100 text-gray-600'
                         }`}
                       >
@@ -1931,10 +1931,10 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
 
             {/* Your team card (assigned team members from sub-team) */}
             {data.assignedTeam && data.assignedTeam.length > 0 && (
-              <div className="bg-white rounded-[28px] p-6 sm:p-8 border border-black/5 shadow-xs space-y-4">
+              <div className="bg-white rounded-[12px] p-6 sm:p-8 border border-[#E5E7EB] shadow-xs space-y-4">
                 <div className="flex items-center justify-between pb-3 border-b border-black/5 flex-wrap gap-2">
                   <div>
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#D92D50]">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-[var(--accent)]">
                       Support & Delivery
                     </span>
                     <h2 className="text-lg font-bold text-[#111111] mt-0.5">
@@ -1950,7 +1950,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
                   {data.assignedTeam.map((member, idx) => (
                     <div
                       key={idx}
-                      className="p-3.5 rounded-2xl bg-[#FAFAFA] border border-black/5 flex items-center justify-between gap-3"
+                      className="p-3.5 rounded-[12px] bg-[#F9FAFB] border border-[#E5E7EB] flex items-center justify-between gap-3"
                     >
                       <div className="min-w-0">
                         <div className="text-sm font-bold text-[#111111] truncate">
@@ -1961,7 +1961,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
                         </div>
                       </div>
                       {member.isLead && (
-                        <span className="text-[10px] font-bold bg-[#FCE9ED] text-[#D92D50] px-2 py-0.5 rounded-full shrink-0">
+                        <span className="text-[10px] font-bold bg-blue-50 text-[var(--accent)] px-2 py-0.5 rounded-full shrink-0">
                           Lead
                         </span>
                       )}
@@ -1988,7 +1988,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
             {/* List of Requests */}
             <div className="space-y-3">
               {requests.length === 0 ? (
-                <div className="p-12 text-center text-xs text-[#6B6B6B] rounded-[28px] bg-white border border-black/5">
+                <div className="p-12 text-center text-xs text-[#6B6B6B] rounded-[12px] bg-white border border-[#E5E7EB]">
                   <CheckCircle2 size={24} className="text-emerald-500 mx-auto mb-2" />
                   <div className="font-bold text-[#111111]">All action items complete!</div>
                   <p>No pending information or materials requested right now.</p>
@@ -1997,7 +1997,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
                 (showAllRequests ? requests : requests.slice(0, 5)).map((req) => (
                   <div
                     key={req.id}
-                    className="p-5 rounded-[24px] bg-white border border-black/5 shadow-xs hover:border-black/15 transition-all flex flex-col md:flex-row md:items-center justify-between gap-4"
+                    className="p-5 rounded-[12px] bg-white border border-[#E5E7EB] shadow-xs hover:border-black/15 transition-all flex flex-col md:flex-row md:items-center justify-between gap-4"
                   >
                     <div className="space-y-1 min-w-0 flex-1">
                       <div className="flex items-center gap-2 flex-wrap">
@@ -2049,7 +2049,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
                         setUploadError(null);
                         setSubmitSuccess(false);
                       }}
-                      className="px-4 py-2 rounded-full bg-[#111111] hover:bg-[#D92D50] text-white text-xs font-bold transition-colors cursor-pointer shrink-0 shadow-2xs"
+                      className="px-4 py-2 rounded-full bg-[var(--accent)] hover:opacity-90 text-white text-xs font-bold transition-colors cursor-pointer shrink-0 shadow-2xs"
                     >
                       {req.status === 'Pending' || req.status === 'Needs Changes'
                         ? 'Respond & Upload'
@@ -2085,7 +2085,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
                 <div className="bg-white rounded-[32px] max-w-xl w-full p-6 md:p-8 border border-black/10 shadow-2xl space-y-5 my-8">
                   <div className="flex items-start justify-between pb-3 border-b border-black/5">
                     <div>
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-[#D92D50]">
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-[var(--accent)]">
                         Action Item
                       </span>
                       <h3 className="text-lg font-bold text-[#111111]">
@@ -2136,7 +2136,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
                           value={responseText}
                           onChange={(e) => setResponseText(e.target.value)}
                           placeholder="Provide any details, text content, or instructions..."
-                          className="w-full px-3 py-2 text-xs bg-[#F8F7F7] border border-black/10 rounded-xl focus:outline-none focus:border-[#D92D50]"
+                          className="w-full px-3 py-2 text-xs bg-[#F8F7F7] border border-black/10 rounded-xl focus:outline-none focus:border-[var(--accent)]"
                         />
 
                         {/* Password security hint (Prompt requirement) */}
@@ -2158,7 +2158,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
                         </div>
 
                         {/* File input */}
-                        <label className="p-4 border-2 border-dashed border-black/10 hover:border-[#D92D50]/50 rounded-2xl bg-[#FAFAFA] hover:bg-[#FCE9ED]/20 flex flex-col items-center justify-center gap-1.5 cursor-pointer transition-all text-center">
+                        <label className="p-4 border-2 border-dashed border-black/10 hover:border-[var(--accent)]/50 rounded-[12px] bg-[#F9FAFB] hover:bg-blue-50/20 flex flex-col items-center justify-center gap-1.5 cursor-pointer transition-all text-center">
                           <Upload size={18} className="text-[#A8A5A5]" />
                           <span className="text-xs font-semibold text-[#111111]">
                             Choose files from your device
@@ -2182,7 +2182,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
                             {selectedFiles.map((f, idx) => (
                               <div
                                 key={idx}
-                                className="p-2.5 bg-[#F8F7F7] rounded-xl border border-black/5 flex items-center justify-between text-xs"
+                                className="p-2.5 bg-[#F8F7F7] rounded-xl border border-[#E5E7EB] flex items-center justify-between text-xs"
                               >
                                 <div className="flex items-center gap-2 truncate">
                                   <Paperclip size={13} className="text-[#A8A5A5] shrink-0" />
@@ -2206,7 +2206,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
                         )}
 
                         {uploadError && (
-                          <div className="p-2 text-xs text-[#D92D50] font-semibold bg-[#FCE9ED] rounded-xl">
+                          <div className="p-2 text-xs text-[var(--crimson)] font-semibold bg-[var(--crimson-tint)] border border-[#FECDCA] rounded-xl">
                             {uploadError}
                           </div>
                         )}
@@ -2223,7 +2223,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
                         <button
                           type="submit"
                           disabled={isSubmittingResponse}
-                          className="px-5 py-2 text-xs font-bold bg-[#111111] hover:bg-[#D92D50] disabled:opacity-50 text-white rounded-full transition-colors cursor-pointer shadow-xs flex items-center gap-1.5"
+                          className="px-5 py-2 text-xs font-bold bg-[var(--accent)] hover:opacity-90 disabled:opacity-50 text-white rounded-full transition-colors cursor-pointer shadow-xs flex items-center gap-1.5"
                         >
                           {isSubmittingResponse ? (
                             <span>Sending...</span>
@@ -2262,7 +2262,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
                   href={liveReport.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-4 py-2 rounded-full bg-[#111111] hover:bg-[#D92D50] text-white text-xs font-bold transition-all shadow-xs flex items-center gap-1.5 cursor-pointer"
+                  className="px-4 py-2 rounded-full bg-[var(--accent)] hover:opacity-90 text-white text-xs font-bold transition-all shadow-xs flex items-center gap-1.5 cursor-pointer"
                 >
                   <ExternalLink size={13} />
                   <span>Check Live ({liveReport.label || 'Analytics'})</span>
@@ -2271,10 +2271,10 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
             </div>
 
             {/* Growth Overview Card (Built ONLY from published reports, never live) */}
-            <div className="bg-white rounded-[28px] p-6 sm:p-8 border border-black/5 shadow-xs space-y-6">
+            <div className="bg-white rounded-[12px] p-6 sm:p-8 border border-[#E5E7EB] shadow-xs space-y-6">
               <div className="flex items-center justify-between flex-wrap gap-3 pb-3 border-b border-black/5">
                 <div>
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#D92D50]">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-[var(--accent)]">
                     Growth Overview
                   </span>
                   <h2 className="text-lg font-bold text-[#111111]">
@@ -2293,7 +2293,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
                 <>
                   {/* KPI comparison pills */}
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                    <div className="p-4 rounded-2xl bg-[#FAFAFA] border border-black/5">
+                    <div className="p-4 rounded-[12px] bg-[#F9FAFB] border border-[#E5E7EB]">
                       <span className="text-xs text-[#A8A5A5] font-semibold block mb-1">
                         Monthly Visitors
                       </span>
@@ -2316,7 +2316,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
                       </span>
                     </div>
 
-                    <div className="p-4 rounded-2xl bg-[#FAFAFA] border border-black/5">
+                    <div className="p-4 rounded-[12px] bg-[#F9FAFB] border border-[#E5E7EB]">
                       <span className="text-xs text-[#A8A5A5] font-semibold block mb-1">
                         Enquiries Received
                       </span>
@@ -2339,7 +2339,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
                       </span>
                     </div>
 
-                    <div className="p-4 rounded-2xl bg-[#FAFAFA] border border-black/5">
+                    <div className="p-4 rounded-[12px] bg-[#F9FAFB] border border-[#E5E7EB]">
                       <span className="text-xs text-[#A8A5A5] font-semibold block mb-1">
                         Estimated ROI Multiplier
                       </span>
@@ -2363,8 +2363,8 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
                           <AreaChart data={sixMonthTrend}>
                             <defs>
                               <linearGradient id="visitorsGrad" x1="0" y1="0" x2="0" y2="1">
-                                <stop offset="5%" stopColor="#D92D50" stopOpacity={0.2} />
-                                <stop offset="95%" stopColor="#D92D50" stopOpacity={0} />
+                                <stop offset="5%" stopColor="#1F5FA8" stopOpacity={0.2} />
+                                <stop offset="95%" stopColor="#1F5FA8" stopOpacity={0} />
                               </linearGradient>
                             </defs>
                             <XAxis
@@ -2390,7 +2390,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
                             <Area
                               type="monotone"
                               dataKey="visitors"
-                              stroke="#D92D50"
+                              stroke="#1F5FA8"
                               strokeWidth={2}
                               fillOpacity={1}
                               fill="url(#visitorsGrad)"
@@ -2403,7 +2403,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
                   )}
                 </>
               ) : (
-                <div className="p-10 text-center text-xs text-[#6B6B6B] rounded-2xl bg-[#FAFAFA] border border-black/5">
+                <div className="p-10 text-center text-xs text-[#6B6B6B] rounded-[12px] bg-[#F9FAFB] border border-[#E5E7EB]">
                   Your first report arrives on {client.nextReportDue || 'the scheduled date'}.
                 </div>
               )}
@@ -2416,7 +2416,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
               </h3>
 
               {publishedReports.length === 0 ? (
-                <div className="p-8 text-center text-xs text-[#6B6B6B] bg-white rounded-2xl border border-black/5">
+                <div className="p-8 text-center text-xs text-[#6B6B6B] bg-white rounded-2xl border border-[#E5E7EB]">
                   No monthly reports published yet.
                 </div>
               ) : (
@@ -2424,11 +2424,11 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
                   <div
                     key={rep.id}
                     onClick={() => setSelectedReportDetail(rep)}
-                    className="p-5 rounded-2xl bg-white border border-black/5 hover:border-[#D92D50]/30 transition-all cursor-pointer flex items-center justify-between gap-4 shadow-2xs group"
+                    className="p-5 rounded-2xl bg-white border border-[#E5E7EB] hover:border-[var(--accent)]/30 transition-all cursor-pointer flex items-center justify-between gap-4 shadow-2xs group"
                   >
                     <div>
                       <div className="flex items-center gap-2 mb-1">
-                        <span className="font-bold text-sm text-[#111111] group-hover:text-[#D92D50] transition-colors">
+                        <span className="font-bold text-sm text-[#111111] group-hover:text-[var(--accent)] transition-colors">
                           {rep.monthLabel}
                         </span>
                         <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800">
@@ -2447,7 +2447,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
 
                     <div className="flex items-center gap-4 text-xs font-bold text-[#111111]">
                       <span className="tabular-nums">{rep.visitors.value} visitors</span>
-                      <ChevronRight size={14} className="text-[#A8A5A5] group-hover:text-[#D92D50]" />
+                      <ChevronRight size={14} className="text-[#A8A5A5] group-hover:text-[var(--accent)]" />
                     </div>
                   </div>
                 ))
@@ -2472,10 +2472,10 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
 
             {/* CARD: ESTIMATE YOUR RETURN (ROI ESTIMATOR) */}
             {client.roiEstimatorEnabled !== false && (
-              <div className="bg-white rounded-[28px] p-6 sm:p-8 border border-black/5 shadow-xs space-y-6">
+              <div className="bg-white rounded-[12px] p-6 sm:p-8 border border-[#E5E7EB] shadow-xs space-y-6">
                 <div className="flex items-center justify-between flex-wrap gap-3 pb-3 border-b border-black/5">
                   <div>
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#D92D50]">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-[var(--accent)]">
                       ROI Calculator
                     </span>
                     <h2 className="text-lg font-bold text-[#111111] mt-0.5">
@@ -2483,7 +2483,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
                     </h2>
                   </div>
                   {client.showPlanPriceInPortal && (
-                    <div className="px-3.5 py-1.5 rounded-full bg-[#F4F2F2] border border-black/5 text-xs text-[#111111] font-semibold">
+                    <div className="px-3.5 py-1.5 rounded-full bg-[#F4F2F2] border border-[#E5E7EB] text-xs text-[#111111] font-semibold">
                       Current plan:{' '}
                       <span className="font-bold">
                         €{client.monthlyFeeEUR || 450} / month
@@ -2510,7 +2510,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
                           setRoiEnquiries(val);
                           updateRoiStorage({ enquiries: val });
                         }}
-                        className="w-full px-3 py-2 text-xs bg-[#F8F7F7] border border-black/10 rounded-xl focus:outline-none focus:border-[#D92D50]"
+                        className="w-full px-3 py-2 text-xs bg-[#F8F7F7] border border-black/10 rounded-xl focus:outline-none focus:border-[var(--accent)]"
                       />
                       <span className="text-[10px] text-[#A8A5A5] mt-0.5 block">
                         Average calls, form submissions, or enquiries per month.
@@ -2532,7 +2532,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
                           setRoiConversionRate(val);
                           updateRoiStorage({ conversionRate: val });
                         }}
-                        className="w-full px-3 py-2 text-xs bg-[#F8F7F7] border border-black/10 rounded-xl focus:outline-none focus:border-[#D92D50]"
+                        className="w-full px-3 py-2 text-xs bg-[#F8F7F7] border border-black/10 rounded-xl focus:outline-none focus:border-[var(--accent)]"
                       />
                       <span className="text-[10px] text-[#A8A5A5] mt-0.5 block">
                         Estimated conversion rate from enquiry to active customer.
@@ -2554,7 +2554,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
                           setRoiCustomerValue(val);
                           updateRoiStorage({ customerValue: val });
                         }}
-                        className="w-full px-3 py-2 text-xs bg-[#F8F7F7] border border-black/10 rounded-xl focus:outline-none focus:border-[#D92D50]"
+                        className="w-full px-3 py-2 text-xs bg-[#F8F7F7] border border-black/10 rounded-xl focus:outline-none focus:border-[var(--accent)]"
                       />
                       <span className="text-[10px] text-[#A8A5A5] mt-0.5 block">
                         Average initial or annual revenue generated per new customer.
@@ -2582,7 +2582,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
                           setRoiExtraEnquiries(val);
                           updateRoiStorage({ extraEnquiries: val });
                         }}
-                        className="w-full accent-[#D92D50] cursor-pointer"
+                        className="w-full accent-[var(--accent)] cursor-pointer"
                       />
                       <div className="flex justify-between text-[10px] text-[#A8A5A5] mt-0.5">
                         <span>+1</span>
@@ -2593,7 +2593,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
                   </div>
 
                   {/* Output Calculation Column */}
-                  <div className="p-6 rounded-2xl bg-[#FAFAFA] border border-black/5 flex flex-col justify-between space-y-4">
+                  <div className="p-6 rounded-[12px] bg-[#F9FAFB] border border-[#E5E7EB] flex flex-col justify-between space-y-4">
                     <div>
                       <span className="text-[11px] font-bold uppercase tracking-wider text-[#6B6B6B]">
                         Estimated Extra Monthly Value
@@ -2641,10 +2641,10 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
             )}
 
             {/* WEEKLY PERFORMANCE SNAPSHOTS */}
-            <div className="bg-white rounded-[28px] p-6 sm:p-8 border border-black/5 shadow-xs space-y-6">
+            <div className="bg-white rounded-[12px] p-6 sm:p-8 border border-[#E5E7EB] shadow-xs space-y-6">
               <div className="flex items-center justify-between flex-wrap gap-3 pb-3 border-b border-black/5">
                 <div>
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#D92D50]">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-[var(--accent)]">
                     Weekly Snapshots
                   </span>
                   <h2 className="text-lg font-bold text-[#111111] mt-0.5">
@@ -2657,7 +2657,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
               </div>
 
               {(!data.weeklySnapshots || data.weeklySnapshots.length === 0) ? (
-                <div className="p-8 text-center text-xs text-[#6B6B6B] bg-[#FAFAFA] rounded-2xl border border-black/5">
+                <div className="p-8 text-center text-xs text-[#6B6B6B] bg-[#FAFAFA] rounded-2xl border border-[#E5E7EB]">
                   No weekly snapshots published yet.
                 </div>
               ) : (
@@ -2665,7 +2665,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
                   {data.weeklySnapshots.map((snap) => (
                     <div
                       key={snap.id}
-                      className="p-5 rounded-2xl bg-[#FAFAFA] border border-black/5 space-y-3"
+                      className="p-5 rounded-[12px] bg-[#F9FAFB] border border-[#E5E7EB] space-y-3"
                     >
                       <div className="flex items-center justify-between flex-wrap gap-2">
                         <div className="flex items-center gap-2">
@@ -2687,7 +2687,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
                         {snap.metrics.map((m) => (
                           <div
                             key={m.id}
-                            className="p-3.5 rounded-xl bg-white border border-black/5 space-y-1.5"
+                            className="p-3.5 rounded-xl bg-white border border-[#E5E7EB] space-y-1.5"
                           >
                             <div className="flex items-center justify-between gap-1">
                               <span className="text-[11px] font-semibold text-[#6B6B6B] truncate">
@@ -2721,7 +2721,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
                 <div className="bg-white rounded-[32px] max-w-2xl w-full p-6 md:p-8 border border-black/10 shadow-2xl space-y-6 my-8">
                   <div className="flex items-start justify-between pb-3 border-b border-black/5">
                     <div>
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-[#D92D50]">
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-[var(--accent)]">
                         Performance Report
                       </span>
                       <h3 className="text-xl font-bold text-[#111111]">
@@ -2835,7 +2835,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
             </div>
 
             {/* SECTION A: SHARED FILES */}
-            <div className="bg-white rounded-[28px] p-6 border border-black/5 shadow-xs space-y-4">
+            <div className="bg-white rounded-[12px] p-6 border border-[#E5E7EB] shadow-xs space-y-4">
               <h2 className="text-sm font-bold text-[#111111]">Shared Project Files</h2>
 
               {files.length === 0 ? (
@@ -2850,7 +2850,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
                       className="py-3 flex items-center justify-between gap-4 text-xs"
                     >
                       <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 rounded-xl bg-[#FCE9ED] text-[#D92D50] flex items-center justify-center font-bold">
+                        <div className="w-8 h-8 rounded-xl bg-blue-50 text-[var(--accent)] flex items-center justify-center font-bold">
                           <FileText size={15} />
                         </div>
                         <div>
@@ -2893,14 +2893,14 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
 
             {/* SECTION B: UPCOMING MEETINGS */}
             {meetings.length > 0 && (
-              <div className="bg-white rounded-[28px] p-6 border border-black/5 shadow-xs space-y-4">
+              <div className="bg-white rounded-[12px] p-6 border border-[#E5E7EB] shadow-xs space-y-4">
                 <h2 className="text-sm font-bold text-[#111111]">Scheduled Reviews & Calls</h2>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {meetings.map((meet) => (
                     <div
                       key={meet.id}
-                      className="p-4 rounded-2xl bg-[#FAFAFA] border border-black/5 flex flex-col justify-between space-y-3"
+                      className="p-4 rounded-[12px] bg-[#F9FAFB] border border-[#E5E7EB] flex flex-col justify-between space-y-3"
                     >
                       <div>
                         <div className="flex items-center justify-between mb-1">
@@ -2934,13 +2934,13 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
 
             {/* Book a meeting (Calendly) */}
             {data.bookingLink && (
-              <div className="bg-white rounded-[28px] p-6 border border-black/5 shadow-xs flex items-center justify-between flex-wrap gap-4">
+              <div className="bg-white rounded-[12px] p-6 border border-[#E5E7EB] shadow-xs flex items-center justify-between flex-wrap gap-4">
                 <div className="flex items-center gap-3.5">
-                  <div className="w-10 h-10 rounded-2xl bg-[#F8F7F7] border border-black/5 flex items-center justify-center text-[#111111]">
+                  <div className="w-10 h-10 rounded-2xl bg-[#F8F7F7] border border-[#E5E7EB] flex items-center justify-center text-[#111111]">
                     <Calendar size={18} />
                   </div>
                   <div>
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#D92D50]">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-[var(--accent)]">
                       Direct Scheduling
                     </span>
                     <h3 className="text-sm font-bold text-[#111111]">
@@ -2956,7 +2956,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
                   href={data.bookingLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#111111] hover:bg-[#D92D50] text-white text-xs font-bold transition-colors shadow-2xs"
+                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[var(--accent)] hover:opacity-90 text-white text-xs font-bold transition-colors shadow-2xs"
                 >
                   <span>Book a meeting</span>
                   <ExternalLink size={12} />
@@ -2965,7 +2965,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
             )}
 
             {/* SECTION C: SUPPORT TICKETS & RAISE TICKET FORM */}
-            <div className="bg-white rounded-[28px] p-6 border border-black/5 shadow-xs space-y-4">
+            <div className="bg-white rounded-[12px] p-6 border border-[#E5E7EB] shadow-xs space-y-4">
               <div className="flex items-center justify-between flex-wrap gap-3">
                 <div>
                   <h2 className="text-sm font-bold text-[#111111]">Support Tickets & Requests</h2>
@@ -2977,7 +2977,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
                 <button
                   type="button"
                   onClick={() => setRaiseTicketModalOpen(true)}
-                  className="px-4 py-2 rounded-full bg-[#111111] hover:bg-[#D92D50] text-white text-xs font-bold transition-colors cursor-pointer shadow-2xs flex items-center gap-1.5"
+                  className="px-4 py-2 rounded-full bg-[var(--accent)] hover:opacity-90 text-white text-xs font-bold transition-colors cursor-pointer shadow-2xs flex items-center gap-1.5"
                 >
                   <Plus size={13} />
                   <span>Raise a Ticket</span>
@@ -2993,7 +2993,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
                   {(showAllTickets ? tickets : tickets.slice(0, 5)).map((tick) => (
                     <div
                       key={tick.id}
-                      className="p-4 rounded-2xl bg-[#FAFAFA] border border-black/5 space-y-2"
+                      className="p-4 rounded-[12px] bg-[#F9FAFB] border border-[#E5E7EB] space-y-2"
                     >
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
@@ -3040,10 +3040,10 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
             </div>
 
             {/* SECTION D: SECURITY BASICS CHECKLIST (Replaces free GDPR badge) */}
-            <div className="bg-white rounded-[28px] p-6 sm:p-8 border border-black/5 shadow-xs space-y-6">
+            <div className="bg-white rounded-[12px] p-6 sm:p-8 border border-[#E5E7EB] shadow-xs space-y-6">
               <div className="flex items-center justify-between flex-wrap gap-3 pb-3 border-b border-black/5">
                 <div>
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#D92D50]">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-[var(--accent)]">
                     Verified Technical Baseline
                   </span>
                   <h2 className="text-lg font-bold text-[#111111] mt-0.5">
@@ -3089,7 +3089,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
                 ].map((item) => (
                   <div
                     key={item.key}
-                    className="p-4 rounded-2xl bg-[#FAFAFA] border border-black/5 flex items-start justify-between gap-3"
+                    className="p-4 rounded-[12px] bg-[#F9FAFB] border border-[#E5E7EB] flex items-start justify-between gap-3"
                   >
                     <div className="space-y-1">
                       <div className="flex items-center gap-2">
@@ -3136,10 +3136,10 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
             </div>
 
             {/* SECTION E: GOOGLE REVIEW QR KIT */}
-            <div className="bg-white rounded-[28px] p-6 sm:p-8 border border-black/5 shadow-xs space-y-6">
+            <div className="bg-white rounded-[12px] p-6 sm:p-8 border border-[#E5E7EB] shadow-xs space-y-6">
               <div className="flex items-center justify-between flex-wrap gap-3 pb-3 border-b border-black/5">
                 <div>
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#D92D50]">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-[var(--accent)]">
                     Reputation Toolkit
                   </span>
                   <h2 className="text-lg font-bold text-[#111111] mt-0.5">
@@ -3150,14 +3150,14 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
                 <button
                   type="button"
                   onClick={() => setShowQrModal(true)}
-                  className="px-4 py-2 rounded-full bg-[#111111] hover:bg-[#D92D50] text-white text-xs font-bold transition-all shadow-xs flex items-center gap-1.5 cursor-pointer"
+                  className="px-4 py-2 rounded-full bg-[var(--accent)] hover:opacity-90 text-white text-xs font-bold transition-all shadow-xs flex items-center gap-1.5 cursor-pointer"
                 >
                   <QrCode size={14} />
                   <span>Create QR Sheet</span>
                 </button>
               </div>
 
-              <div className="p-5 rounded-2xl bg-[#FAFAFA] border border-black/5 space-y-4">
+              <div className="p-5 rounded-[12px] bg-[#F9FAFB] border border-[#E5E7EB] space-y-4">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                   <div>
                     <span className="text-xs font-bold text-[#111111] block">
@@ -3191,12 +3191,12 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
             </div>
 
             {/* SECTION F: CONTACT LINE (Prompt requirement) */}
-            <div className="p-6 rounded-[28px] bg-white border border-black/5 shadow-xs text-center space-y-1">
+            <div className="p-6 rounded-[12px] bg-white border border-[#E5E7EB] shadow-xs text-center space-y-1">
               <span className="text-xs font-semibold text-[#111111]">
                 Need immediate assistance?
               </span>
               <p className="text-xs text-[#6B6B6B]">
-                Email <a href="mailto:support@openhours.ie" className="text-[#D92D50] font-bold underline">support@openhours.ie</a> or contact your dedicated Account Manager.
+                Email <a href="mailto:support@openhours.ie" className="text-[var(--accent)] font-semibold underline">support@openhours.ie</a> or contact your dedicated Account Manager.
               </p>
             </div>
           </div>
@@ -3208,10 +3208,10 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
       {/* ========================================================================= */}
       {raiseTicketModalOpen && (
         <div className="fixed inset-0 z-50 bg-black/40 backdrop-blur-xs flex items-center justify-center p-4">
-          <div className="bg-white rounded-[28px] max-w-md w-full p-6 border border-black/10 shadow-2xl space-y-4 animate-in fade-in zoom-in-95 duration-150">
+          <div className="bg-white rounded-[12px] max-w-md w-full p-6 border border-black/10 shadow-2xl space-y-4 animate-in fade-in zoom-in-95 duration-150">
             <div className="flex items-start justify-between">
               <div>
-                <span className="text-[10px] font-bold uppercase tracking-wider text-[#D92D50]">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-[var(--accent)]">
                   Client Support
                 </span>
                 <h3 className="text-lg font-bold text-[#111111]">Raise a Ticket</h3>
@@ -3253,7 +3253,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
                   placeholder="e.g. Update emergency contact phone number on homepage"
                   value={ticketTitle}
                   onChange={(e) => setTicketTitle(e.target.value)}
-                  className="w-full px-3 py-2 text-xs bg-[#F8F7F7] border border-black/10 rounded-xl focus:outline-none focus:border-[#D92D50]"
+                  className="w-full px-3 py-2 text-xs bg-[#F8F7F7] border border-black/10 rounded-xl focus:outline-none focus:border-[var(--accent)]"
                 />
               </div>
 
@@ -3267,7 +3267,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
                   placeholder="Describe your question or change request in detail..."
                   value={ticketDescription}
                   onChange={(e) => setTicketDescription(e.target.value)}
-                  className="w-full px-3 py-2 text-xs bg-[#F8F7F7] border border-black/10 rounded-xl focus:outline-none focus:border-[#D92D50]"
+                  className="w-full px-3 py-2 text-xs bg-[#F8F7F7] border border-black/10 rounded-xl focus:outline-none focus:border-[var(--accent)]"
                 />
               </div>
 
@@ -3282,7 +3282,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
                 <button
                   type="submit"
                   disabled={isSubmittingTicket}
-                  className="px-5 py-2 text-xs font-bold bg-[#111111] hover:bg-[#D92D50] text-white rounded-full transition-colors cursor-pointer shadow-xs"
+                  className="px-5 py-2 text-xs font-bold bg-[var(--accent)] hover:opacity-90 text-white rounded-full transition-colors cursor-pointer shadow-xs"
                 >
                   {isSubmittingTicket ? 'Submitting...' : 'Submit Ticket'}
                 </button>
@@ -3299,7 +3299,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
           aria-modal="true"
           className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-xs animate-in fade-in"
         >
-          <div className="bg-white rounded-[24px] max-w-lg w-full p-6 shadow-2xl border border-black/10 animate-in zoom-in-95 space-y-4">
+          <div className="bg-white rounded-[12px] max-w-lg w-full p-6 shadow-2xl border border-black/10 animate-in zoom-in-95 space-y-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <div className="w-8 h-8 rounded-lg bg-amber-50 text-amber-700 flex items-center justify-center">
@@ -3337,7 +3337,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
                   placeholder="e.g. Please update our opening hours to 08:30–17:30 on weekdays, swap the second service description, and use a deeper navy tone for the secondary color."
                   value={changeFeedback}
                   onChange={(e) => setChangeFeedback(e.target.value)}
-                  className="w-full px-3 py-2 text-xs bg-[#F8F7F7] border border-black/10 rounded-xl focus:outline-none focus:border-[#D92D50]"
+                  className="w-full px-3 py-2 text-xs bg-[#F8F7F7] border border-black/10 rounded-xl focus:outline-none focus:border-[var(--accent)]"
                 />
               </div>
 
@@ -3352,7 +3352,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
                 <button
                   type="submit"
                   disabled={demoActionLoading || !changeFeedback.trim()}
-                  className="px-5 py-2 text-xs font-bold bg-[#111111] hover:bg-[#D92D50] text-white rounded-full transition-colors cursor-pointer shadow-xs disabled:opacity-50"
+                  className="px-5 py-2 text-xs font-bold bg-[var(--accent)] hover:opacity-90 text-white rounded-full transition-colors cursor-pointer shadow-xs disabled:opacity-50"
                 >
                   {demoActionLoading ? 'Submitting...' : 'Submit Revision Request'}
                 </button>
@@ -3389,7 +3389,7 @@ export const ClientPortalPreview: React.FC<ClientPortalPreviewProps> = ({
       {/* Powered by Open Hours Footer */}
       {theme.poweredByOpenHours && (
         <footer className="mt-auto border-t border-black/5 py-6 px-6 text-center">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-black/5 text-[11px] font-semibold text-[#6B6B6B] shadow-2xs">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-[#E5E7EB] text-[11px] font-semibold text-[#6B6B6B] shadow-2xs">
             <LogoMark size={14} />
             <span>Powered by Open Hours</span>
           </div>

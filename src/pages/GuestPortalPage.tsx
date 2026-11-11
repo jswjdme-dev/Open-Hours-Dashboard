@@ -102,7 +102,7 @@ export const GuestPortalPage: React.FC<GuestPortalPageProps> = ({
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#F6F5F4] flex items-center justify-center p-6">
+      <div className="min-h-screen bg-[#F3F4F6] flex items-center justify-center p-6">
         <div className="flex flex-col items-center gap-3">
           <div className="w-10 h-10 border-2 border-[#111111] border-t-transparent rounded-full animate-spin" />
           <span className="text-xs font-semibold text-[#666666]">
@@ -116,8 +116,8 @@ export const GuestPortalPage: React.FC<GuestPortalPageProps> = ({
   // Calm generic state for invalid or missing referral code
   if (!vm || !vm.valid) {
     return (
-      <div className="min-h-screen bg-[#F6F5F4] flex flex-col items-center justify-center p-6">
-        <div className="max-w-md w-full bg-white rounded-[28px] p-7 sm:p-9 border border-black/5 shadow-sm text-center space-y-5">
+      <div className="min-h-screen bg-[#F3F4F6] flex flex-col items-center justify-center p-6">
+        <div className="max-w-md w-full bg-white rounded-[12px] p-7 sm:p-9 border border-[#E5E7EB] shadow-sm text-center space-y-5">
           <div className="flex justify-center">
             <LogoMark size={44} />
           </div>
@@ -131,9 +131,9 @@ export const GuestPortalPage: React.FC<GuestPortalPageProps> = ({
             </p>
           </div>
 
-          <div className="p-4 rounded-2xl bg-[#FAFAF9] border border-black/5 text-xs text-[#555555] space-y-1 text-left">
+          <div className="p-4 rounded-[12px] bg-[#FAFAF9] border border-[#E5E7EB] text-xs text-[#555555] space-y-1 text-left">
             <div className="font-semibold text-[#111111] flex items-center gap-1.5">
-              <Sparkles size={14} className="text-[#D92D50]" />
+              <Sparkles size={14} className="text-[var(--accent)]" />
               <span>Free website concept first</span>
             </div>
             <p className="text-[11.5px] text-[#777777] leading-relaxed">
@@ -145,7 +145,7 @@ export const GuestPortalPage: React.FC<GuestPortalPageProps> = ({
             <button
               type="button"
               onClick={handleApplyClick}
-              className="w-full py-3 px-5 rounded-xl bg-[#111111] hover:bg-black text-white text-xs font-bold transition-all shadow-xs flex items-center justify-center gap-2 cursor-pointer"
+              className="w-full py-3 px-5 rounded-[8px] bg-[#0F2A47] hover:bg-[#17375A] text-white text-xs font-bold transition-all shadow-xs flex items-center justify-center gap-2 cursor-pointer"
             >
               <span>Apply for a website concept</span>
               <ArrowRight size={14} />
@@ -165,9 +165,9 @@ export const GuestPortalPage: React.FC<GuestPortalPageProps> = ({
   };
 
   return (
-    <div className="min-h-screen bg-[#F6F5F4] text-[#111111] flex flex-col">
+    <div className="min-h-screen bg-[#F3F4F6] text-[#111111] flex flex-col">
       {/* Top Navigation Bar in Client Portal Style */}
-      <header className="bg-white border-b border-black/5 sticky top-0 z-30 shadow-2xs">
+      <header className="bg-white border-b border-[#E5E7EB] sticky top-0 z-30 shadow-2xs">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
           <div className="flex items-center gap-3">
             <LogoMark size={32} />
@@ -195,7 +195,7 @@ export const GuestPortalPage: React.FC<GuestPortalPageProps> = ({
             <button
               type="button"
               onClick={handleApplyClick}
-              className="px-4 py-2 rounded-xl bg-[#111111] hover:bg-black text-white text-xs font-bold transition-all shadow-xs flex items-center gap-1.5 cursor-pointer"
+              className="px-4 py-2 rounded-[8px] bg-[#0F2A47] hover:bg-[#17375A] text-white text-xs font-bold transition-all shadow-xs flex items-center gap-1.5 cursor-pointer"
             >
               <span>Apply now</span>
               <ArrowRight size={13} />
@@ -204,13 +204,13 @@ export const GuestPortalPage: React.FC<GuestPortalPageProps> = ({
         </div>
 
         {/* 5 Portal Tabs (with Locked indicators) */}
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center gap-1 overflow-x-auto scrollbar-none border-t border-black/5">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center gap-1 overflow-x-auto scrollbar-none border-t border-[#E5E7EB]">
           <button
             type="button"
             onClick={() => handleTabClick('home')}
             className={`px-4 py-2.5 text-xs font-semibold border-b-2 transition-colors flex items-center gap-1.5 shrink-0 cursor-pointer ${
               activeTab === 'home'
-                ? 'border-[#111111] text-[#111111]'
+                ? 'border-[var(--accent)] text-[var(--accent)]'
                 : 'border-transparent text-[#777777] hover:text-[#111111]'
             }`}
           >
@@ -262,7 +262,7 @@ export const GuestPortalPage: React.FC<GuestPortalPageProps> = ({
       {/* Main Guest Content */}
       <main className="max-w-4xl mx-auto px-4 sm:px-6 py-8 flex-1 w-full space-y-6">
         {/* Invitation Welcome Banner */}
-        <div className="bg-white rounded-[28px] p-6 sm:p-8 border border-black/5 shadow-xs space-y-4">
+        <div className="bg-white rounded-[12px] p-6 sm:p-8 border border-[#E5E7EB] shadow-xs space-y-4">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <div className="space-y-1">
               <div className="flex items-center gap-2">
@@ -286,7 +286,7 @@ export const GuestPortalPage: React.FC<GuestPortalPageProps> = ({
             <button
               type="button"
               onClick={handleApplyClick}
-              className="px-5 py-2.5 rounded-xl bg-[#111111] hover:bg-black text-white text-xs font-bold transition-all shadow-xs flex items-center justify-center gap-2 cursor-pointer shrink-0"
+              className="px-5 py-2.5 rounded-[8px] bg-[#0F2A47] hover:bg-[#17375A] text-white text-xs font-bold transition-all shadow-xs flex items-center justify-center gap-2 cursor-pointer shrink-0"
             >
               <span>Apply now</span>
               <ArrowRight size={14} />
@@ -304,8 +304,8 @@ export const GuestPortalPage: React.FC<GuestPortalPageProps> = ({
 
         {/* 4 Pillars Summary Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div className="bg-white rounded-[22px] p-5 border border-black/5 shadow-2xs space-y-1.5">
-            <div className="w-8 h-8 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center font-bold mb-2">
+          <div className="bg-white rounded-[22px] p-5 border border-[#E5E7EB] shadow-2xs space-y-1.5">
+            <div className="w-8 h-8 rounded-[8px] bg-emerald-50 text-emerald-700 flex items-center justify-center font-bold mb-2">
               <Sparkles size={16} />
             </div>
             <h3 className="text-xs font-bold text-[#111111]">
@@ -316,8 +316,8 @@ export const GuestPortalPage: React.FC<GuestPortalPageProps> = ({
             </p>
           </div>
 
-          <div className="bg-white rounded-[22px] p-5 border border-black/5 shadow-2xs space-y-1.5">
-            <div className="w-8 h-8 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center font-bold mb-2">
+          <div className="bg-white rounded-[22px] p-5 border border-[#E5E7EB] shadow-2xs space-y-1.5">
+            <div className="w-8 h-8 rounded-[8px] bg-blue-50 text-blue-700 flex items-center justify-center font-bold mb-2">
               <ShieldCheck size={16} />
             </div>
             <h3 className="text-xs font-bold text-[#111111]">
@@ -328,8 +328,8 @@ export const GuestPortalPage: React.FC<GuestPortalPageProps> = ({
             </p>
           </div>
 
-          <div className="bg-white rounded-[22px] p-5 border border-black/5 shadow-2xs space-y-1.5">
-            <div className="w-8 h-8 rounded-xl bg-rose-50 text-rose-700 flex items-center justify-center font-bold mb-2">
+          <div className="bg-white rounded-[22px] p-5 border border-[#E5E7EB] shadow-2xs space-y-1.5">
+            <div className="w-8 h-8 rounded-[8px] bg-rose-50 text-rose-700 flex items-center justify-center font-bold mb-2">
               <CheckCircle2 size={16} />
             </div>
             <h3 className="text-xs font-bold text-[#111111]">
@@ -340,8 +340,8 @@ export const GuestPortalPage: React.FC<GuestPortalPageProps> = ({
             </p>
           </div>
 
-          <div className="bg-white rounded-[22px] p-5 border border-black/5 shadow-2xs space-y-1.5">
-            <div className="w-8 h-8 rounded-xl bg-purple-50 text-purple-700 flex items-center justify-center font-bold mb-2">
+          <div className="bg-white rounded-[22px] p-5 border border-[#E5E7EB] shadow-2xs space-y-1.5">
+            <div className="w-8 h-8 rounded-[8px] bg-purple-50 text-purple-700 flex items-center justify-center font-bold mb-2">
               <Layers size={16} />
             </div>
             <h3 className="text-xs font-bold text-[#111111]">
@@ -366,7 +366,7 @@ export const GuestPortalPage: React.FC<GuestPortalPageProps> = ({
           <button
             type="button"
             onClick={handleApplyClick}
-            className="px-6 py-3 rounded-xl bg-white hover:bg-white/90 text-[#111111] text-xs font-bold transition-all shadow-sm inline-flex items-center gap-2 cursor-pointer"
+            className="px-6 py-3 rounded-[8px] bg-white hover:bg-white/90 text-[#111111] text-xs font-bold transition-all shadow-sm inline-flex items-center gap-2 cursor-pointer"
           >
             <span>Apply now with code {vm.referralCode}</span>
             <ArrowRight size={14} />
@@ -378,7 +378,7 @@ export const GuestPortalPage: React.FC<GuestPortalPageProps> = ({
       {lockedNoticeTab && (
         <div className="fixed inset-0 z-50 bg-black/40 backdrop-blur-xs flex items-center justify-center p-4">
           <div className="bg-white rounded-[24px] p-6 max-w-sm w-full border border-black/10 shadow-lg text-center space-y-4 animate-scale-up">
-            <div className="w-12 h-12 rounded-2xl bg-amber-50 text-amber-700 flex items-center justify-center mx-auto">
+            <div className="w-12 h-12 rounded-[12px] bg-amber-50 text-amber-700 flex items-center justify-center mx-auto">
               <Lock size={22} />
             </div>
             <div className="space-y-1">
@@ -393,7 +393,7 @@ export const GuestPortalPage: React.FC<GuestPortalPageProps> = ({
               <button
                 type="button"
                 onClick={() => setLockedNoticeTab(null)}
-                className="flex-1 py-2.5 rounded-xl border border-black/10 hover:bg-black/5 text-xs font-semibold text-[#555555] cursor-pointer"
+                className="flex-1 py-2.5 rounded-[8px] border border-black/10 hover:bg-black/5 text-xs font-semibold text-[#555555] cursor-pointer"
               >
                 Close
               </button>
@@ -403,7 +403,7 @@ export const GuestPortalPage: React.FC<GuestPortalPageProps> = ({
                   setLockedNoticeTab(null);
                   handleApplyClick();
                 }}
-                className="flex-1 py-2.5 rounded-xl bg-[#111111] hover:bg-black text-white text-xs font-bold cursor-pointer"
+                className="flex-1 py-2.5 rounded-[8px] bg-[#0F2A47] hover:bg-[#17375A] text-white text-xs font-bold cursor-pointer"
               >
                 Apply now
               </button>
